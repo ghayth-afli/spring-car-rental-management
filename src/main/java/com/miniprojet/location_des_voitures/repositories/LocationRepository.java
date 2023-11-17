@@ -1,0 +1,9 @@
+package com.miniprojet.location_des_voitures.repositories;
+
+import com.miniprojet.location_des_voitures.models.Location;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface LocationRepository  extends JpaRepository<Location,Long> {
+}
