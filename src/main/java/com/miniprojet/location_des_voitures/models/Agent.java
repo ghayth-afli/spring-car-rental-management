@@ -19,33 +19,26 @@ import java.util.List;
 public class Agent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Integer Id;
-    @Column(name = "nom")
-    private String Nom;
-    @Column(name = "prenom")
-    private String Prenom;
+    private Integer id;
+    private String nom;
+    private String prenom;
     @NotBlank
-    @Column(name = "identifiant")
-    private String Identifiant;
+    private String identifiant;
     @NotBlank
-    @Column(name = "password")
-    private String Mot_de_Passe;
+    private String password;
     @NotBlank
     @Email
-    @Column(name = "email")
-    private String Email;
-    @Column(name = "telephone")
-    private String Telephone;
+    private String email;
+    private String telephone;
     @OneToMany(mappedBy = "agent")
     private List<Voiture> voitures;
 
     public Agent(String nom, String prenom, String identifiant, String mot_de_Passe, String email, String telephone) {
-        Nom = nom;
-        Prenom = prenom;
-        Identifiant = identifiant;
-        Mot_de_Passe = mot_de_Passe;
-        Email = email;
-        Telephone = telephone;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.identifiant = identifiant;
+        this.password = mot_de_Passe;
+        this.email = email;
+        this.telephone = telephone;
     }
 }

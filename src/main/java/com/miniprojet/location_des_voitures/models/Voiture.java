@@ -18,70 +18,56 @@ import java.util.List;
 public class Voiture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long Id;
+    private Long id;
     @NotBlank
-    @Column(name = "immatriculation")
-    private String Immatriculation;
+    private String immatriculation;
     @NotBlank
-    @Column(name = "marque")
-    private String Marque;
+    private String marque;
     @NotBlank
-    @Column(name = "modele")
-    private String Modele;
+    private String modele;
     @NotBlank
-    @Column(name = "date_de_mise_en_circulation")
-    private Date Date_de_Mise_en_Circulation;
+    private Date dateDeMiseEnCirculation;
     @NotBlank
-    @Column(name = "prix_de_location")
-    private Double Prix_de_Location;
+    private Double prixDeLocation;
     @NotBlank
-    @Column(name = "statut_de_disponibilite")
     @Enumerated(EnumType.STRING)
-    private EStatut Statut_de_Disponibilite;
+    private EStatut statutDeDisponibilite;
     @NotBlank
-    @Column(name = "type_de_carburant")
     @Enumerated(EnumType.STRING)
-    private ECarburant Type_de_Carburant;
+    private ECarburant typeDeCarburant;
     @NotBlank
-    @Column(name = "kilometrage")
-    private Double Kilometrage;
+    private Double kilometrage;
     @NotBlank
-    @Column(name = "type_de_transmission")
     @Enumerated(EnumType.STRING)
-    private ETransmission Type_de_Transmission;
+    private ETransmission typeDeTransmission;
     @NotBlank
-    @Column(name = "couleur")
-    private String Couleur;
+    private String couleur;
     @NotBlank
-    @Column(name = "nombre_de_places")
-    private Short Nombre_de_Places;
+    private Short nombreDeplaces;
     @NotBlank
-    @Column(name = "options")
-    private String Options;
+    private String options;
     @NotBlank
-    @Column(name = "image")
-    private String Image;
+    private String image;
     @ManyToOne
     @JoinColumn(name = "agent_id")
     private Agent agent;
     @OneToMany(mappedBy = "voiture")
     private List<Location> locations;
 
-    public Voiture(String immatriculation, String marque, String modele, Date date_de_Mise_en_Circulation, Double prix_de_Location, EStatut statut_de_Disponibilite, ECarburant type_de_Carburant, Double kilometrage, ETransmission type_de_Transmission, String couleur, Short nombre_de_Places, String options, String image, Agent agent) {
-        Immatriculation = immatriculation;
-        Marque = marque;
-        Modele = modele;
-        Date_de_Mise_en_Circulation = date_de_Mise_en_Circulation;
-        Prix_de_Location = prix_de_Location;
-        Statut_de_Disponibilite = statut_de_Disponibilite;
-        Type_de_Carburant = type_de_Carburant;
-        Kilometrage = kilometrage;
-        Type_de_Transmission = type_de_Transmission;
-        Couleur = couleur;
-        Nombre_de_Places = nombre_de_Places;
-        Options = options;
-        Image = image;
+    public Voiture(String immatriculation, String marque, String modele, Date dateDeMiseEnCirculation, Double prixDeLocation, EStatut statutDeDisponibilite, ECarburant typeDeCarburant, Double kilometrage, ETransmission typeDeTransmission, String couleur, Short nombreDeplaces, String options, String image, Agent agent) {
+        this.immatriculation = immatriculation;
+        this.marque = marque;
+        this.modele = modele;
+        this.dateDeMiseEnCirculation = dateDeMiseEnCirculation;
+        this.prixDeLocation = prixDeLocation;
+        this.statutDeDisponibilite = statutDeDisponibilite;
+        this.typeDeCarburant = typeDeCarburant;
+        this.kilometrage = kilometrage;
+        this.typeDeTransmission = typeDeTransmission;
+        this.couleur = couleur;
+        this.nombreDeplaces = nombreDeplaces;
+        this.options = options;
+        this.image = image;
         this.agent = agent;
     }
 }

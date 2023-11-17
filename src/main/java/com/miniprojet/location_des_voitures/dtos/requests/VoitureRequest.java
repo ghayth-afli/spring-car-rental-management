@@ -16,28 +16,28 @@ import java.util.Date;
 @Setter
 public class VoitureRequest {
     @NotNull(message = "L'immatriculation est requise")
-    private Long Immatriculation;
+    private Long immatriculation;
     @NotBlank(message = "La marque est requise")
-    private String Marque;
+    private String marque;
     @NotBlank(message = "Le modèle est requis")
-    private String Modele;
+    private String modele;
     @NotNull(message = "La date de mise en circulation est requise")
-    private Date Date_de_Mise_en_Circulation;
+    private Date dateDeMiseEnCirculation;
     @NotNull(message = "Le prix de location est requis")
     @Min(value = 0, message = "Le prix de location doit être supérieur ou égal à 0")
-    private Double Prix_de_Location;
+    private Double prixDeLocation;
     @NotNull(message = "Le statut de disponibilité est requis")
-    private EStatut Statut_de_Disponibilite;
+    private EStatut statutDeDisponibilite;
     @NotNull(message = "Le type de carburant est requis")
-    private ECarburant Type_de_Carburant;
+    private ECarburant typeDeCarburant;
     @NotNull(message = "Le kilométrage est requis")
     @Min(value = 0, message = "Le kilométrage doit être supérieur ou égal à 0")
     private Double Kilometrage;
     @NotNull(message = "Le type de transmission est requis")
-    private ETransmission Type_de_Transmission;
+    private ETransmission typeDeTransmission;
     @NotBlank(message = "La couleur est requise")
-    private String Couleur;
+    private String couleur;
     @NotNull(message = "Le nombre de places est requis")
     @Min(value = 1, message = "Le nombre de places doit être d'au moins 1")
-    private Short Nombre_de_Places;
+    private Short nombreDePlaces;
 }

@@ -16,55 +16,45 @@ import java.util.List;
 @NoArgsConstructor
 @Table(name = "clients",
         uniqueConstraints = {
-                @UniqueConstraint(columnNames = "permis_de_conduire"),
+                @UniqueConstraint(columnNames = "permisDeConduire"),
                 @UniqueConstraint(columnNames = "cin"),
                 @UniqueConstraint(columnNames = "email")
         })
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long Id;
+    private Long id;
     @NotBlank
-    @Column(name = "cin")
-    private Long Cin;
+    private Long cin;
     @NotBlank
-    @Column(name = "permis_de_conduire")
-    private Long Permis_de_conduire;
+    private Long permisDeConduire;
     @NotBlank
-    @Column(name = "nom")
-    private String Nom;
+    private String nom;
     @NotBlank
-    @Column(name = "prenom")
-    private String Prenom;
+    private String prenom;
     @NotBlank
-    @Column(name = "adresse")
-    private String Adresse;
+    private String adresse;
     @NotBlank
     @Email
-    @Column(name = "email")
-    private String Email;
+    private String email;
     @NotBlank
-    @Column(name = "telephone")
-    private String Telephone;
+    private String telephone;
     @NotBlank
-    @Column(name = "date_de_naissance")
-    private Date Date_de_Naissance;
+    private Date dateDeNaissance;
     @NotBlank
-    @Column(name = "date_enregistrement")
-    private Date Date_Enregistrement;
+    private Date dateEnregistrement;
     @OneToMany(mappedBy = "client")
     private List<Location> locations;
 
-    public Client(Long cin, Long permis_de_conduire, String nom, String prenom, String adresse, String email, String telephone, Date date_de_Naissance, Date date_Enregistrement) {
-        Cin = cin;
-        Permis_de_conduire = permis_de_conduire;
-        Nom = nom;
-        Prenom = prenom;
-        Adresse = adresse;
-        Email = email;
-        Telephone = telephone;
-        Date_de_Naissance = date_de_Naissance;
-        Date_Enregistrement = date_Enregistrement;
+    public Client(Long cin, Long permis_de_conduire, String nom, String prenom, String adresse, String email, String telephone, Date date_de_Naissance, Date date_enregistrement) {
+        this.cin = cin;
+        this.permisDeConduire = permis_de_conduire;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.adresse = adresse;
+        this.email = email;
+        this.telephone = telephone;
+        this.dateDeNaissance = date_de_Naissance;
+        this.dateEnregistrement = date_enregistrement;
     }
 }
