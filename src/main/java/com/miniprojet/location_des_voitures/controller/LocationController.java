@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -34,7 +35,7 @@ public class LocationController {
 
     @PostMapping("/client/{id}/create")
     //create a location
-    public String createLocation(@PathVariable Long id, @Valid @RequestBody LocationRequest locationRequest, Model model){
+    public String createLocation(@PathVariable Long id, @Valid @RequestBody LocationRequest locationRequest, Model model, BindingResult bindingResult){
         return null;
     }
 
@@ -46,7 +47,7 @@ public class LocationController {
 
     @PostMapping("/client/{id}/edit/{id}")
     //edit a location
-    public String editLocation(@PathVariable Long id, @Valid @RequestBody LocationRequest locationRequest, Model model){
+    public String editLocation(@PathVariable Long id, @Valid @RequestBody LocationRequest locationRequest, Model model, BindingResult bindingResult){
         return null;
     }
 

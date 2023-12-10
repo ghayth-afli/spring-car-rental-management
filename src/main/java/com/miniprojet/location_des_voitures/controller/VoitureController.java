@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -28,7 +29,7 @@ public class VoitureController {
 
     @PostMapping("/create")
     //create voiture
-    public String createVoiture(Model model, @Valid  @RequestBody VoitureRequest voitureRequest){
+    public String createVoiture(Model model, @Valid  @RequestBody VoitureRequest voitureRequest, BindingResult bindingResult){
         return null;
     }
 
@@ -40,7 +41,7 @@ public class VoitureController {
 
     @PostMapping("/{id}/edit")
     //edit voiture
-    public String editVoiture(Model model, @PathVariable Long id, @Valid @RequestBody VoitureRequest voitureRequest){
+    public String editVoiture(Model model, @PathVariable Long id, @Valid @RequestBody VoitureRequest voitureRequest, BindingResult bindingResult){
         return null;
     }
 
