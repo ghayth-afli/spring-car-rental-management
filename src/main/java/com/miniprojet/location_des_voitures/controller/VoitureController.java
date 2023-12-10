@@ -2,6 +2,7 @@ package com.miniprojet.location_des_voitures.controller;
 
 import com.miniprojet.location_des_voitures.dto.requests.VoitureRequest;
 import com.miniprojet.location_des_voitures.service.IVoitureService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,7 +28,7 @@ public class VoitureController {
 
     @PostMapping("/create")
     //create voiture
-    public String createVoiture(Model model, @RequestBody VoitureRequest voitureRequest){
+    public String createVoiture(Model model, @Valid  @RequestBody VoitureRequest voitureRequest){
         return null;
     }
 
@@ -39,7 +40,7 @@ public class VoitureController {
 
     @PostMapping("/{id}/edit")
     //edit voiture
-    public String editVoiture(Model model, @PathVariable Long id, @RequestBody VoitureRequest voitureRequest){
+    public String editVoiture(Model model, @PathVariable Long id, @Valid @RequestBody VoitureRequest voitureRequest){
         return null;
     }
 

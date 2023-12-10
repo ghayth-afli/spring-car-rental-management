@@ -1,11 +1,15 @@
 package com.miniprojet.location_des_voitures.controller;
 
 import com.miniprojet.location_des_voitures.dto.requests.ClientRequest;
+import com.miniprojet.location_des_voitures.model.Client;
 import com.miniprojet.location_des_voitures.service.IClientService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/clients")
@@ -16,6 +20,8 @@ public class ClientController {
     @GetMapping
     //display all clients
     public String getAllClients(Model model){
+        List<Client> clients = clientService.getAllClients();
+        model.addAttribute("clients", clients);
         return null;
     }
 
@@ -27,7 +33,8 @@ public class ClientController {
 
     @PostMapping("/create")
     //create client
-    public String createClient(Model model, @RequestBody ClientRequest clientRequest){
+    public String createClient(Model model, @Valid @RequestBody ClientRequest clientRequest){
+
         return null;
     }
 
@@ -39,7 +46,7 @@ public class ClientController {
 
     @PostMapping("/{id}/edit")
     //edit client
-    public String editClient(Model model, @PathVariable Long id, @RequestBody ClientRequest clientRequest){
+    public String editClient(Model model, @PathVariable Long id, @Valid @RequestBody ClientRequest clientRequest){
         return null;
     }
 
