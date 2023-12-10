@@ -44,19 +44,19 @@ public class LocationController {
         return null;
     }
 
-    @GetMapping("/client/{id}/edit/{id}")
+    @GetMapping("/client/{id}/edit/{id_location}")
     //display form to edit a location
     public String editLocation(@PathVariable Long id, Model model){
         return null;
     }
 
-    @PostMapping("/client/{id}/edit/{id}")
+    @PostMapping("/client/{id}/edit/{id_location}")
     //edit a location
     public String editLocation(@PathVariable Long id, @Valid @RequestBody LocationRequest locationRequest, Model model, BindingResult bindingResult){
         return null;
     }
 
-    @PostMapping("/client/{id}/delete/{id}")
+    @PostMapping("/delete/{id_location}")
     //delete a location
     public String deleteLocation(@PathVariable Long id, Model model){
         return null;
