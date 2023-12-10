@@ -25,7 +25,7 @@ public class ClientController {
     public String getAllClients(Model model){
         List<Client> clients = clientService.getAllClients();
         model.addAttribute("clients", clients);
-        return null;
+        return "backoffice/client/index";
     }
 
     @GetMapping("/create")

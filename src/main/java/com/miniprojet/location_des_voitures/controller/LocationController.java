@@ -1,6 +1,7 @@
 package com.miniprojet.location_des_voitures.controller;
 
 import com.miniprojet.location_des_voitures.dto.requests.LocationRequest;
+import com.miniprojet.location_des_voitures.service.IClientService;
 import com.miniprojet.location_des_voitures.service.ILocationService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,10 @@ import org.springframework.web.bind.annotation.*;
 public class LocationController {
     @Autowired
     ILocationService locationService;
+    @Autowired
+    IClientService clientService;
+    @Autowired
+    ILocationService voitureService;
 
     @GetMapping("/client/{id}")
     //display all locations of a client
