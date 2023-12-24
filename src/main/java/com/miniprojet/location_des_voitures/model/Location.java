@@ -17,22 +17,15 @@ public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank
     @Enumerated(EnumType.STRING)
     private EGarantie typeDeGarantie;
-    @NotBlank
     private Double fraisDeLocation;
-    @NotBlank
     @Enumerated(EnumType.STRING)
     private EPaiement modeDePaiement;
-    @NotBlank
     private Double montantDeGarantie;
-    @NotBlank
     @Enumerated(EnumType.STRING)
     private ELocation statutDeLaLocation;
-    @NotBlank
     private Date dateDeDebut;
-    @NotBlank
     private Date dateDeFin;
     @ManyToOne
     @JoinColumn(name = "voiture_id")

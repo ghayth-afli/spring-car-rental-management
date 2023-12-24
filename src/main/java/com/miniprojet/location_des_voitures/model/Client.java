@@ -24,24 +24,15 @@ public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank
     private Long cin;
-    @NotBlank
     private Long permisDeConduire;
-    @NotBlank
     private String nom;
-    @NotBlank
     private String prenom;
-    @NotBlank
     private String adresse;
-    @NotBlank
     @Email
     private String email;
-    @NotBlank
     private String telephone;
-    @NotBlank
     private Date dateDeNaissance;
-    @NotBlank
     private Date dateEnregistrement;
     @OneToMany(mappedBy = "client")
     private List<Location> locations;

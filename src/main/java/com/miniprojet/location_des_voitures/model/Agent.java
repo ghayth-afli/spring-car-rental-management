@@ -22,11 +22,8 @@ public class Agent {
     private Integer id;
     private String nom;
     private String prenom;
-    @NotBlank
     private String identifiant;
-    @NotBlank
     private String password;
-    @NotBlank
     @Email
     private String email;
     private String telephone;

@@ -19,34 +19,21 @@ public class Voiture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank
     private String immatriculation;
-    @NotBlank
     private String marque;
-    @NotBlank
     private String modele;
-    @NotBlank
     private Date dateDeMiseEnCirculation;
-    @NotBlank
     private Double prixDeLocation;
-    @NotBlank
     @Enumerated(EnumType.STRING)
     private EStatut statutDeDisponibilite;
-    @NotBlank
     @Enumerated(EnumType.STRING)
     private ECarburant typeDeCarburant;
-    @NotBlank
     private Double kilometrage;
-    @NotBlank
     @Enumerated(EnumType.STRING)
     private ETransmission typeDeTransmission;
-    @NotBlank
     private String couleur;
-    @NotBlank
     private Short nombreDeplaces;
-    @NotBlank
     private String options;
-    @NotBlank
     private String image;
     @ManyToOne
     @JoinColumn(name = "agent_id")
