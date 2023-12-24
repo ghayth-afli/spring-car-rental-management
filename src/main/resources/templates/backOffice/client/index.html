@@ -85,8 +85,17 @@
                                                     <span class="caret"></span>
                                                 </button>
                                                 <ul class="dropdown-menu" role="menu">
-                                                    <li><a href="#">Modifier</a></li>
-                                                    <li><a href="#">Supprimer</a></li>
+                                                    <!-- Modify link -->
+                                                    <li>
+                                                        <a th:href="@{/clients/{id}/edit(id=${client.id})}">Modifier</a>
+                                                    </li>
+                                                    <!-- Delete form -->
+                                                    <li>
+                                                        <form th:action="@{/clients/{id}/delete(id=${client.id})}" method="post">
+                                                            <input type="submit" class="dropdown-item" value="Supprimer">
+                                                        </form>
+                                                    </li>
+                                                    <!-- Other options -->
                                                     <li><a href="#">Locations</a></li>
                                                 </ul>
                                             </div>
