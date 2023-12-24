@@ -38,8 +38,6 @@ public class ClientController {
     @PostMapping("/create")
     //create client
     public String createClient(@Valid @ModelAttribute("clientRequest") ClientRequest clientRequest, BindingResult bindingResult){
-        System.out.println(bindingResult.hasErrors());
-        System.out.println(clientRequest.toString());
         if (bindingResult.hasErrors()){
             return "backoffice/client/create";
         }
@@ -63,7 +61,18 @@ public class ClientController {
     public String editClient(Model model, @PathVariable Long id){
         Optional<Client> client = clientService.getClientById(id);
         if (client.isPresent()){
-            model.addAttribute("client", client.get());
+            ClientRequest clientRequest = new ClientRequest(
+                    client.get().getId(),
+                    client.get().getCin(),
+                    client.get().getPermisDeConduire(),
+                    client.get().getNom(),
+                    client.get().getPrenom(),
+                    client.get().getAdresse(),
+                    client.get().getEmail(),
+                    client.get().getTelephone(),
+                    client.get().getDateDeNaissance()
+            );
+            model.addAttribute("clientRequest", clientRequest);
             return "backoffice/client/edit";
         }
         return "redirect:/clients";
@@ -71,7 +80,7 @@ public class ClientController {
 
     @PostMapping("/{id}/edit")
     //edit client
-    public String editClient(Model model, @PathVariable Long id, @Valid @RequestBody ClientRequest clientRequest, BindingResult bindingResult){
+    public String editClient(Model model, @PathVariable Long id, @Valid @ModelAttribute("clientRequest") ClientRequest clientRequest, BindingResult bindingResult){
         if (bindingResult.hasErrors()){
             return "backoffice/client/edit";
         }

@@ -13,6 +13,7 @@ import java.util.Date;
 @Setter
 @NoArgsConstructor
 public class ClientRequest {
+    private Long id;
     @NotNull(message = "Le Cin est requis")
     @Min(value = 10000000, message = "Le Cin doit être un nombre à 8 chiffres")
     @Max(value = 99999999, message = "Le Cin doit être un nombre à 8 chiffres")
