@@ -31,12 +31,15 @@ public class ClientController {
     @GetMapping("/create")
     //display create client form
     public String createClient(Model model){
+        model.addAttribute("clientRequest",new ClientRequest());
         return "backoffice/client/create";
     }
 
     @PostMapping("/create")
     //create client
-    public String createClient(Model model, @Valid @RequestBody ClientRequest clientRequest, BindingResult bindingResult){
+    public String createClient(@Valid @ModelAttribute("clientRequest") ClientRequest clientRequest, BindingResult bindingResult){
+        System.out.println(bindingResult.hasErrors());
+        System.out.println(clientRequest.toString());
         if (bindingResult.hasErrors()){
             return "backoffice/client/create";
         }

@@ -3,12 +3,15 @@ package com.miniprojet.location_des_voitures.dto.requests;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 @AllArgsConstructor
 @Getter
 @Setter
+@NoArgsConstructor
 public class ClientRequest {
     @NotNull(message = "Le Cin est requis")
     @Min(value = 10000000, message = "Le Cin doit être un nombre à 8 chiffres")
@@ -30,5 +33,6 @@ public class ClientRequest {
     private String telephone;
     @NotNull(message = "La Date de Naissance est requise")
     @Past(message = "La Date de Naissance doit être dans le passé")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateDeNaissance;
 }

@@ -1,10 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="backOffice/fragment/head-fragment :: head-fragment('Clients')">
 
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <th:block th:replace="backOffice/fragment/header :: header"></th:block>
+
+    <th:block th:replace="backOffice/fragment/aside :: aside"></th:block>
+
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Géstion des Clients
+                <small>Panneau de contrôle</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i>Accueil</a></li>
+                <li class="active">Client</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <!-- Menu -->
+            <div class="box">
+                <div class="box-body">
+                    <a href="/client/index.html" class="btn btn-app">
+                        <i class="fa fa-repeat"></i> Actualiser
+                    </a>
+                    <a href="/client/Create.html" class="btn btn-app">
+                        <i class="fa fa-plus"></i> Ajouter
+                    </a>
+
+                </div>
+                <!-- /.box-body -->
+            </div>
+
+            <!-- /.row -->
+            <!-- Main row -->
+            <div class="row">
+                <!-- Left col -->
+                <section class="content">
+                    <!-- Data Table -->
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">Les Clients Enregistré</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th>CIN</th>
+                                    <th>Nom</th>
+                                    <th>Prenom</th>
+                                    <th>Adresse</th>
+                                    <th>Email</th>
+                                    <th>Telephone</th>
+                                    <th>Date de Naissance</th>
+                                    <th>Permis de Conduire</th>
+                                    <th>Date Enregistrement</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <th:block th:each="client : ${clients}">
+                                    <tr>
+                                        <td th:text="${client.getCin}">ABC123456</td>
+                                        <td th:text="${client.getNom}">Dupont</td>
+                                        <td th:text="${client.getPrenom}">Marie</td>
+                                        <td th:text="${client.getAdresse}">123 Rue de la Liberté</td>
+                                        <td th:text="${client.getEmail}">marie.dupont@example.com</td>
+                                        <td th:text="${client.getTelephone}">+33 6 12 34 56 78</td>
+                                        <td th:text="${client.getDateDeNaissance}">25/04/1990</td>
+                                        <td th:text="${client.getPermisDeConduire}">B12345678</td>
+                                        <td th:text="${client.getDateEnregistrement}">10/09/2022</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-default">Action</button>
+                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                    <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li><a href="#">Modifier</a></li>
+                                                    <li><a href="#">Supprimer</a></li>
+                                                    <li><a href="#">Locations</a></li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </th:block>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>CIN</th>
+                                    <th>Nom</th>
+                                    <th>Prenom</th>
+                                    <th>Adresse</th>
+                                    <th>Email</th>
+                                    <th>Telephone</th>
+                                    <th>Date de Naissance</th>
+                                    <th>Permis de Conduire</th>
+                                    <th>Date Enregistrement</th>
+                                    <th></th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </section>
+                <!-- /.Left col -->
+            </div>
+            <!-- /.row (main row) -->
+
+        </section>
+        <!-- /.content -->
+
+    </div>
+
+    <th:block th:replace="backOffice/fragment/footer :: footer"></th:block>
+
+    <div class="control-sidebar-bg"></div>
+</div>
+
+<th:block th:replace="backOffice/fragment/script-fragment :: script-fragment"></th:block>
 </body>
 </html>
