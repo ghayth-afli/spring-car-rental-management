@@ -1,10 +1,169 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="backOffice/fragment/head-fragment :: head-fragment('Tableau de bord')">
 
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <th:block th:replace="backOffice/fragment/header :: header"></th:block>
+
+    <th:block th:replace="backOffice/fragment/aside :: aside"></th:block>
+
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Tableau de bord
+                <small>Panneau de contrôle</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="#"><i class="fa fa-dashboard"></i>Accueil</a>
+                </li>
+                <li class="active">Tableau de bord</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <!-- Small boxes (Stat box) -->
+            <div class="row">
+                <div class="col-lg-3 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-aqua">
+                        <div class="inner">
+                            <h3 th:text="${tableauDeBord.getNbrClients}">150</h3>
+
+                            <p>Clients</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-bag"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-green">
+                        <div class="inner">
+                            <h3 th:text="${tableauDeBord.getRevenu}">5305<sup style="font-size: 20px">TND</sup></h3>
+
+                            <p>Revenue Total</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-stats-bars"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-yellow">
+                        <div class="inner">
+                            <h3 th:text="${tableauDeBord.getNbrLocations}">44</h3>
+
+                            <p>Locations</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-person-add"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <h3 th:text="${tableauDeBord.getNbrVoitures}">65</h3>
+
+                            <p>Voitures</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-pie-graph"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- ./col -->
+            </div>
+
+            <!-- /.row -->
+            <!-- Main row -->
+            <div class="row">
+                <!-- Left col -->
+                <section class="content">
+                    <!-- Data Table -->
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">Les Voitures Disponible</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table
+                                    id="example1"
+                                    class="table table-bordered table-striped"
+                            >
+                                <thead>
+                                <tr>
+                                    <th>Immatriculation</th>
+                                    <th>Marque</th>
+                                    <th>Modele</th>
+                                    <th>Date de Mise en Circulation</th>
+                                    <th>Prix de Location</th>
+                                    <th>Type de Carburant</th>
+                                    <th>Kilometrage</th>
+                                    <th>Type de Transmission</th>
+                                    <th>Couleur</th>
+                                    <th>Nombre de Places</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <th:block th:each="voiture : ${tableauDeBord.getVoituresDisponible}">
+                                    <tr>
+                                        <td th:text="${voiture.getImmatriculation}">ABC-1234</td>
+                                        <td th:text="${voiture.getMarque}">Toyota</td>
+                                        <td th:text="${voiture.getModele}">Corolla</td>
+                                        <td th:text="${voiture.getDateDeMiseEnCirculation}">15/07/2021</td>
+                                        <td th:text="${voiture.getPrixDeLocation}">50 TND</td>
+                                        <td th:text="${voiture.getTypeDeCarburant}">Essence</td>
+                                        <td th:text="${voiture.getKilometrage}">20 000 km</td>
+                                        <td th:text="${voiture.getTypeDeTransmission}">Automatique</td>
+                                        <td th:text="${voiture.getCouleur}">Bleu</td>
+                                        <td th:text="${voiture.getNombreDeplaces}">5</td>
+                                    </tr>
+                                </th:block>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>Immatriculation</th>
+                                    <th>Marque</th>
+                                    <th>Modele</th>
+                                    <th>Date de Mise en Circulation</th>
+                                    <th>Prix de Location</th>
+                                    <th>Type de Carburant</th>
+                                    <th>Kilometrage</th>
+                                    <th>Type de Transmission</th>
+                                    <th>Couleur</th>
+                                    <th>Nombre de Places</th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </section>
+                <!-- /.Left col -->
+            </div>
+            <!-- /.row (main row) -->
+        </section>
+        <!-- /.content -->
+    </div>
+
+    <th:block th:replace="backOffice/fragment/footer :: footer"></th:block>
+
+    <div class="control-sidebar-bg"></div>
+</div>
+
+<th:block th:replace="backOffice/fragment/script-fragment :: script-fragment"></th:block>
 </body>
 </html>
