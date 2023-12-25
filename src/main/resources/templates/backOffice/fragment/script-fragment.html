@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Title</title>
 </head>
 <body>
-    <th:block th:fragment="script-fragment">
+<th:block th:fragment="script-fragment">
     <!-- ./wrapper -->
 
     <!-- jQuery 3 -->
@@ -71,6 +71,36 @@
     ></script>
     <script
             th:src="@{/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js}"
+    ></script>
+
+    <script th:src="@{/plugins/iCheck/icheck.min.js}"></script>
+
+    <script
+            th:src="@{/plugins/timepicker/bootstrap-timepicker.min.js}"
+    ></script>
+    <script
+            th:src="@{/bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js}"
+    ></script>
+    <script
+            th:src="@{/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js}"
+    ></script>
+    <script
+            th:src="@{/bower_components/bootstrap-daterangepicker/daterangepicker.js}"
+    ></script>
+
+    <script th:src="@{/bower_components/moment/min/moment.min.js}"></script>
+
+    <script
+            th:src="@{/plugins/input-mask/jquery.inputmask.extensions.js}"
+    ></script>
+
+    <script
+            th:src="@{/plugins/input-mask/jquery.inputmask.date.extensions.js}"
+    ></script>
+
+    <script th:src="@{/plugins/input-mask/jquery.inputmask.js}"></script>
+    <script
+            th:src="@{/bower_components/select2/dist/js/select2.full.min.js}"
     ></script>
     <!-- page script -->
     <script th:inline="javascript">

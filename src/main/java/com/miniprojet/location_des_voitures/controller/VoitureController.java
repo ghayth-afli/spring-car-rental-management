@@ -10,7 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,15 +36,24 @@ public class VoitureController {
     @GetMapping("/create")
     //display create voiture form
     public String createVoiture(Model model){
+        model.addAttribute("voitureRequest", new VoitureRequest());
         return "backoffice/voiture/create";
     }
 
     @PostMapping("/create")
     //create voiture
-    public String createVoiture(Model model, @Valid  @RequestBody VoitureRequest voitureRequest, BindingResult bindingResult){
+    public String createVoiture(@Valid  @ModelAttribute("voitureRequest") VoitureRequest voitureRequest,
+                                BindingResult bindingResult,final @RequestParam MultipartFile file)throws IOException{
         if (bindingResult.hasErrors()){
             return "backoffice/voiture/create";
         }
+        //save image
+        StringBuilder fileNames = new StringBuilder();
+        Path fileNameAndPath = Paths.get("src/main/resources/static", file.getOriginalFilename());
+        fileNames.append(file.getOriginalFilename());
+        Files.write(fileNameAndPath, file.getBytes());
+
+        //save voiture
         Voiture voiture = new Voiture(
                 voitureRequest.getImmatriculation(),
                 voitureRequest.getMarque(),
@@ -53,7 +67,7 @@ public class VoitureController {
                 voitureRequest.getCouleur(),
                 voitureRequest.getNombreDePlaces(),
                 voitureRequest.getOptions(),
-                voitureRequest.getImage(),
+                fileNames.toString(),
                 null
         );
         voitureService.createVoiture(voiture);

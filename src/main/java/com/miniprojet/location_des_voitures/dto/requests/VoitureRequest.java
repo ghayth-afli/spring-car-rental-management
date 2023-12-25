@@ -21,7 +21,7 @@ public class VoitureRequest {
     private String marque;
     @NotBlank(message = "Le modèle est requis")
     private String modele;
-    @NotNull(message = "La date de mise en circulation est requise")
+    //@NotNull(message = "La date de mise en circulation est requise")
     private Date dateDeMiseEnCirculation;
     @NotNull(message = "Le prix de location est requis")
     @Min(value = 0, message = "Le prix de location doit être supérieur ou égal à 0")
@@ -40,6 +40,8 @@ public class VoitureRequest {
     private Short nombreDePlaces;
     @NotBlank(message = "Les options sont requises")
     private String options;
-    @NotBlank(message = "L'image est requise")
     private String image;
+
+    public VoitureRequest() {
+    }
 }
