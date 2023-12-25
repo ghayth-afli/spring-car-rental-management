@@ -9,19 +9,22 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 @AllArgsConstructor
 @Getter
 @Setter
 public class VoitureRequest {
+    private Long id;
     @NotNull(message = "L'immatriculation est requise")
     private String immatriculation;
     @NotBlank(message = "La marque est requise")
     private String marque;
     @NotBlank(message = "Le modèle est requis")
     private String modele;
-    //@NotNull(message = "La date de mise en circulation est requise")
+    @NotNull(message = "La date de mise en circulation est requise")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateDeMiseEnCirculation;
     @NotNull(message = "Le prix de location est requis")
     @Min(value = 0, message = "Le prix de location doit être supérieur ou égal à 0")
@@ -40,6 +43,7 @@ public class VoitureRequest {
     private Short nombreDePlaces;
     @NotBlank(message = "Les options sont requises")
     private String options;
+    //@NotBlank(message = "L'image est requise")
     private String image;
 
     public VoitureRequest() {

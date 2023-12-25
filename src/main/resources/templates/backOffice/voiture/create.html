@@ -74,7 +74,7 @@
 
                                     <div class="form-group" th:classappend="${#fields.hasErrors('dateDeMiseEnCirculation')} ? 'has-error' : ''">
                                         <label for="dateDeMiseEnCirculation">Date De Mise En Circulation :</label>
-                                        <input type="Date" class="form-control" id="dateDeMiseEnCirculation" th:field="*{dateDeMiseEnCirculation}">
+                                        <input type="date" class="form-control" id="dateDeMiseEnCirculation" th:field="*{dateDeMiseEnCirculation}">
                                         <span class="help-block" th:if="${#fields.hasErrors('dateDeMiseEnCirculation')}" th:errors="*{dateDeMiseEnCirculation}"></span>
                                     </div>
 

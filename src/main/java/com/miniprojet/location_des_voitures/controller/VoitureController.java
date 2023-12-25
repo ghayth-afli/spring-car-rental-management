@@ -18,6 +18,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/voitures")
@@ -49,8 +50,9 @@ public class VoitureController {
         }
         //save image
         StringBuilder fileNames = new StringBuilder();
-        Path fileNameAndPath = Paths.get("src/main/resources/static", file.getOriginalFilename());
-        fileNames.append(file.getOriginalFilename());
+        String randomName = UUID.randomUUID().toString();
+        Path fileNameAndPath = Paths.get("src/main/resources/static/images", randomName+file.getOriginalFilename());
+        fileNames.append(randomName+file.getOriginalFilename());
         Files.write(fileNameAndPath, file.getBytes());
 
         //save voiture
@@ -79,7 +81,22 @@ public class VoitureController {
     public String editVoiture(Model model, @PathVariable Long id){
         Optional<Voiture> voiture = voitureService.getVoitureById(id);
         if (voiture.isPresent()){
-            model.addAttribute("voiture", voiture.get());
+            VoitureRequest voitureRequest = new VoitureRequest(
+                    voiture.get().getId(),
+                    voiture.get().getImmatriculation(),
+                    voiture.get().getMarque(),
+                    voiture.get().getModele(),
+                    voiture.get().getDateDeMiseEnCirculation(),
+                    voiture.get().getPrixDeLocation(),
+                    voiture.get().getTypeDeCarburant(),
+                    voiture.get().getKilometrage(),
+                    voiture.get().getTypeDeTransmission(),
+                    voiture.get().getCouleur(),
+                    voiture.get().getNombreDeplaces(),
+                    voiture.get().getOptions(),
+                    voiture.get().getImage()
+            );
+            model.addAttribute("voitureRequest", voitureRequest);
             return "backoffice/voiture/edit";
         }
         return "redirect:/voitures";
@@ -87,9 +104,23 @@ public class VoitureController {
 
     @PostMapping("/{id}/edit")
     //edit voiture
-    public String editVoiture(Model model, @PathVariable Long id, @Valid @RequestBody VoitureRequest voitureRequest, BindingResult bindingResult){
+    public String editVoiture(@PathVariable Long id, @Valid  @ModelAttribute("voitureRequest") VoitureRequest voitureRequest,
+                              BindingResult bindingResult,final @RequestParam MultipartFile file){
         if (bindingResult.hasErrors()){
             return "backoffice/voiture/edit";
+        }
+        if (!file.isEmpty()){
+            //save image
+            StringBuilder fileNames = new StringBuilder();
+            String randomName = UUID.randomUUID().toString();
+            Path fileNameAndPath = Paths.get("src/main/resources/static", randomName+file.getOriginalFilename());
+            fileNames.append(randomName+file.getOriginalFilename());
+            try {
+                Files.write(fileNameAndPath, file.getBytes());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            voitureRequest.setImage(fileNames.toString());
         }
         Optional<Voiture> voiture = voitureService.getVoitureById(id);
         if (voiture.isPresent()){
