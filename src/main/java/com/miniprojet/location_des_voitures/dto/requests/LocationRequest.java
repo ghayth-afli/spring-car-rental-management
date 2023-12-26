@@ -14,6 +14,7 @@ import java.util.Date;
 @Setter
 @ToString
 public class LocationRequest {
+    private Long id;
     @NotBlank(message = "L'immatriculation est requise")
     private String immatriculation;
     @NotNull(message = "Le type de garantie est requis")

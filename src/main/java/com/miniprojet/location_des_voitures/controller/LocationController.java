@@ -2,6 +2,7 @@ package com.miniprojet.location_des_voitures.controller;
 
 import com.miniprojet.location_des_voitures.dto.requests.LocationRequest;
 import com.miniprojet.location_des_voitures.model.ELocation;
+import com.miniprojet.location_des_voitures.model.EStatut;
 import com.miniprojet.location_des_voitures.model.Location;
 import com.miniprojet.location_des_voitures.model.Voiture;
 import com.miniprojet.location_des_voitures.service.IClientService;
@@ -54,7 +55,8 @@ public class LocationController {
 
     @PostMapping("/client/{id}/create")
     //create a location
-    public String createLocation(@PathVariable Long id, @Valid @ModelAttribute("locationRequest") LocationRequest locationRequest,BindingResult bindingResult,Model model){
+    public String createLocation(@PathVariable Long id, @Valid @ModelAttribute("locationRequest") LocationRequest locationRequest,
+                                 BindingResult bindingResult,Model model){
         System.out.println(bindingResult.hasErrors());
         System.out.println(locationRequest.toString());
         Optional<Voiture> voiture = voitureService.getVoitureByImmatriculation(locationRequest.getImmatriculation());
@@ -87,21 +89,59 @@ public class LocationController {
                 clientService.getClientById(id).get()
         );
         locationService.createLocation(location);
+        voiture.get().setStatutDeDisponibilite(EStatut.En_location);
+        voitureService.updateVoiture(voiture.get());
         return "redirect:/locations/client/"+id;
     }
-
-    @GetMapping("/client/{id}/edit/{id_location}")
     //display form to edit a location
-    public String editLocation(@PathVariable Long id, Long id_location, Model model){
-        return null;
+    @GetMapping("/{id}/edit")
+    //display form to edit a location
+    public String editLocation(@PathVariable Long id, Model model){
+        Optional<Location> location = locationService.getLocationById(id);
+        if (location.isPresent()){
+            LocationRequest locationRequest = new LocationRequest(
+                    location.get().getId(),
+                    location.get().getVoiture().getImmatriculation(),
+                    location.get().getTypeDeGarantie(),
+                    location.get().getModeDePaiement(),
+                    location.get().getMontantDeGarantie(),
+                    location.get().getDateDeDebut(),
+                    location.get().getDateDeFin()
+            );
+            model.addAttribute("locationRequest", locationRequest);
+            return "backoffice/client/location-edit";
+        }
+        return "redirect:/locations/client/"+id;
     }
-
-    @PostMapping("/client/{id}/edit/{id_location}")
     //edit a location
-    public String editLocation(@PathVariable Long id, Long id_location, @Valid @RequestBody LocationRequest locationRequest, Model model, BindingResult bindingResult){
-        return null;
+    @PostMapping("/{id}/edit")
+    //edit a location
+    public String editLocation(@PathVariable Long id, @Valid @ModelAttribute("locationRequest") LocationRequest locationRequest,
+                               Model model, BindingResult bindingResult){
+        Optional<Location> location = locationService.getLocationById(id);
+        if (location.isPresent()){
+            Optional<Voiture> voiture = voitureService.getVoitureByImmatriculation(locationRequest.getImmatriculation());
+            if (!voiture.isPresent()){
+                bindingResult.rejectValue("immatriculation","error.immatriculation","immatriculation not found");
+            }
+            if (locationRequest.getDateDeDebut()!=null && locationRequest.getDateDeFin()!=null){
+                if (locationRequest.getDateDeDebut().after(locationRequest.getDateDeFin())){
+                    bindingResult.rejectValue("dateDeDebut","error.dateDeDebut","la date de début doit être inférieur à la date de fin");
+                }
+            }
+            if (bindingResult.hasErrors()){
+                return "backoffice/client/location-edit";
+            }
+            location.get().setTypeDeGarantie(locationRequest.getTypeDeGarantie());
+            location.get().setModeDePaiement(locationRequest.getModeDePaiement());
+            location.get().setMontantDeGarantie(locationRequest.getMontantDeGarantie());
+            location.get().setDateDeDebut(locationRequest.getDateDeDebut());
+            location.get().setDateDeFin(locationRequest.getDateDeFin());
+            locationService.updateLocation(location.get());
+        }
+        return "redirect:/clients";
     }
-
+    //display form to delete a location
     @PostMapping("/{id}/delete")
     //delete a location
     public String deleteLocation(@PathVariable Long id, Model model){
