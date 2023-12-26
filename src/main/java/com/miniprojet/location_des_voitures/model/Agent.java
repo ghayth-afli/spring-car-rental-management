@@ -27,7 +27,7 @@ public class Agent {
     @Email
     private String email;
     private String telephone;
-    @OneToMany(mappedBy = "agent")
+    @OneToMany(mappedBy = "agent",cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Voiture> voitures;
 
     public Agent(String nom, String prenom, String identifiant, String mot_de_Passe, String email, String telephone) {

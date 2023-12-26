@@ -34,7 +34,7 @@ public class Client {
     private String telephone;
     private Date dateDeNaissance;
     private Date dateEnregistrement;
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "client",cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Location> locations;
 
     public Client(Long cin, Long permis_de_conduire, String nom, String prenom, String adresse, String email, String telephone, Date date_de_Naissance, Date date_enregistrement) {

@@ -11,4 +11,6 @@ public interface ILocationService {
     void createLocation(Location location);
     void updateLocation(Location location);
     void deleteLocation(Long id);
+    List<Location> getLocationsByClient(Long id);
+    List<Location> getLocationsByVoiture(Long id);
 }

@@ -38,7 +38,7 @@ public class Voiture {
     @ManyToOne
     @JoinColumn(name = "agent_id")
     private Agent agent;
-    @OneToMany(mappedBy = "voiture")
+    @OneToMany(mappedBy = "voiture",cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Location> locations;
 
     public Voiture(String immatriculation, String marque, String modele, Date dateDeMiseEnCirculation, Double prixDeLocation, EStatut statutDeDisponibilite, ECarburant typeDeCarburant, Double kilometrage, ETransmission typeDeTransmission, String couleur, Short nombreDeplaces, String options, String image, Agent agent) {
