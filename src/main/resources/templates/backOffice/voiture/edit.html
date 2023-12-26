@@ -86,12 +86,12 @@
                                     <div class="form-group" th:classappend="${#fields.hasErrors('typeDeCarburant')} ? 'has-error' : ''">
                                         <label >Type De Carburant :</label>
                                         <select class="form-control select2" style="width: 100%" th:field="*{typeDeCarburant}">
-                                            <option selected="selected" th:value="'Essence'">Essence</option>
-                                            <option th:value="'Diesel'">Diesel</option>
-                                            <option th:value="'Électrique'">Électrique</option>
-                                            <option th:value="'Hybride'">Hybride</option>
-                                            <option th:value="'GPL'">GPL</option>
-                                            <option th:value="'GNV'">GNV</option>
+                                            <option th:selected="${voitureRequest.getTypeDeCarburant() == 'Essence'}" th:value="'Essence'">Essence</option>
+                                            <option th:selected="${voitureRequest.getTypeDeCarburant() == 'Diesel'}" th:value="'Diesel'">Diesel</option>
+                                            <option th:selected="${voitureRequest.getTypeDeCarburant() == 'Électrique'}" th:value="'Électrique'">Électrique</option>
+                                            <option th:selected="${voitureRequest.getTypeDeCarburant() == 'Hybride'}" th:value="'Hybride'">Hybride</option>
+                                            <option th:selected="${voitureRequest.getTypeDeCarburant() == 'GPL'}" th:value="'GPL'">GPL</option>
+                                            <option th:selected="${voitureRequest.getTypeDeCarburant() == 'GNV'}" th:value="'GNV'">GNV</option>
                                         </select>
                                         <span class="help-block" th:if="${#fields.hasErrors('typeDeCarburant')}" th:errors="*{typeDeCarburant}"></span>
                                     </div>
@@ -105,8 +105,8 @@
                                     <div class="form-group" th:classappend="${#fields.hasErrors('typeDeTransmission')} ? 'has-error' : ''">
                                         <label >Type De Transmission :</label>
                                         <select class="form-control select2" style="width: 100%" th:field="*{typeDeTransmission}">
-                                            <option selected="selected" th:value="'Manuelle'">Manuelle</option>
-                                            <option th:value="'Automatique'">Automatique</option>
+                                            <option th:selected="${voitureRequest.getTypeDeTransmission() == 'Manuelle'}" th:value="'Manuelle'">Manuelle</option>
+                                            <option th:selected="${voitureRequest.getTypeDeTransmission() == 'Automatique'}" th:value="'Automatique'">Automatique</option>
                                         </select>
                                         <span class="help-block" th:if="${#fields.hasErrors('typeDeTransmission')}" th:errors="*{typeDeTransmission}"></span>
                                     </div>

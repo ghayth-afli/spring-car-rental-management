@@ -63,22 +63,24 @@
                                     <div class="form-group" th:classappend="${#fields.hasErrors('modeDePaiement')} ? 'has-error' : ''">
                                         <label >Mode De Paiement :</label>
                                         <select class="form-control select2" style="width: 100%" th:field="*{modeDePaiement}">
-                                            <option selected="selected" th:value="'Espèce'">Espèce</option>
-                                            <option th:value="'Chèque'">Chèque</option>
+                                            <option th:selected="${locationRequest.getModeDePaiement() == 'Espèce'}" th:value="'Espèce'">Espèce</option>
+                                            <option th:selected="${locationRequest.getModeDePaiement() == 'Chèque'}" th:value="'Chèque'">Chèque</option>
                                         </select>
+
                                         <span class="help-block" th:if="${#fields.hasErrors('modeDePaiement')}" th:errors="*{modeDePaiement}"></span>
                                     </div>
 
                                     <div class="form-group" th:classappend="${#fields.hasErrors('typeDeGarantie')} ? 'has-error' : ''">
                                         <label >Type De Garantie :</label>
                                         <select class="form-control select2" style="width: 100%" th:field="*{typeDeGarantie}">
-                                            <option selected="selected" th:value="'Assurance_Responsabilité_Civile'">Assurance_Responsabilité_Civile</option>
-                                            <option th:value="'Assurance_contre_le_Vol'">Assurance_contre_le_Vol</option>
-                                            <option th:value="'Assurance_Tous_Risques'">Assurance_Tous_Risques</option>
-                                            <option th:value="'Assurance_Personnelle'">Assurance_Personnelle</option>
-                                            <option th:value="'Assurance_Annulation'">Assurance_Annulation</option>
-                                            <option th:value="'Assurance_Assistance_Routière'">Assurance_Assistance_Routière</option>
+                                            <option th:selected="${locationRequest.getTypeDeGarantie() == 'Assurance_Responsabilité_Civile'}" th:value="'Assurance_Responsabilité_Civile'">Assurance Responsabilité Civile</option>
+                                            <option th:selected="${locationRequest.getTypeDeGarantie() == 'Assurance_contre_le_Vol'}" th:value="'Assurance_contre_le_Vol'">Assurance contre le Vol</option>
+                                            <option th:selected="${locationRequest.getTypeDeGarantie() == 'Assurance_Tous_Risques'}" th:value="'Assurance_Tous_Risques'">Assurance Tous Risques</option>
+                                            <option th:selected="${locationRequest.getTypeDeGarantie() == 'Assurance_Personnelle'}" th:value="'Assurance_Personnelle'">Assurance Personnelle</option>
+                                            <option th:selected="${locationRequest.getTypeDeGarantie() == 'Assurance_Annulation'}" th:value="'Assurance_Annulation'">Assurance Annulation</option>
+                                            <option th:selected="${locationRequest.getTypeDeGarantie() == 'Assurance_Assistance_Routière'}" th:value="'Assurance_Assistance_Routière'">Assurance Assistance Routière</option>
                                         </select>
+
                                         <span class="help-block" th:if="${#fields.hasErrors('typeDeGarantie')}" th:errors="*{typeDeGarantie}"></span>
                                     </div>
 
