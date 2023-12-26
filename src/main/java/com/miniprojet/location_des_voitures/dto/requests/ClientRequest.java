@@ -36,4 +36,6 @@ public class ClientRequest {
     @Past(message = "La Date de Naissance doit être dans le passé")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateDeNaissance;
+
+
 }

@@ -36,4 +36,9 @@ public class VoitureServiceImpl implements IVoitureService{
     public void deleteVoiture(Long id) {
         voitureRepository.deleteById(id);
     }
+
+    @Override
+    public Optional<Voiture> getVoitureByImmatriculation(String immatriculation) {
+        return Optional.ofNullable(voitureRepository.findVoitureByImmatriculation(immatriculation));
+    }
 }

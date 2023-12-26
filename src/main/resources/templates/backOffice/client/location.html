@@ -28,10 +28,10 @@
             <!-- Menu -->
             <div class="box">
                 <div class="box-body">
-                    <a href="/clients" class="btn btn-app">
+                    <a th:href="@{'/locations/client/' + ${id}}" class="btn btn-app">
                         <i class="fa fa-repeat"></i> Actualiser
                     </a>
-                    <a href="/clients/create" class="btn btn-app">
+                    <a th:href="@{'/locations/client/' + ${id} + '/create'}" class="btn btn-app">
                         <i class="fa fa-plus"></i> Ajouter
                     </a>
 
@@ -47,7 +47,7 @@
                     <!-- Data Table -->
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">Les Clients Enregistré</h3>
+                            <h3 class="box-title">Les Locations Enregistré</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -96,7 +96,6 @@
                                                         </form>
                                                     </li>
                                                     <!-- Other options -->
-                                                    <li><a href="#">Locations</a></li>
                                                 </ul>
                                             </div>
                                         </td>
