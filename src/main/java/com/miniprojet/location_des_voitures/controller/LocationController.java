@@ -59,9 +59,9 @@ public class LocationController {
                                  BindingResult bindingResult,Model model){
         System.out.println(bindingResult.hasErrors());
         System.out.println(locationRequest.toString());
-        Optional<Voiture> voiture = voitureService.getVoitureByImmatriculation(locationRequest.getImmatriculation());
+        Optional<Voiture> voiture = voitureService.getVoitureByReference(locationRequest.getReference());
         if (!voiture.isPresent()){
-            bindingResult.rejectValue("immatriculation","error.immatriculation","immatriculation not found");
+            bindingResult.rejectValue("reference","error.reference","reference not found");
         }
         if (locationRequest.getDateDeDebut()!=null && locationRequest.getDateDeFin()!=null){
             if (locationRequest.getDateDeDebut().after(locationRequest.getDateDeFin())){
@@ -101,7 +101,7 @@ public class LocationController {
         if (location.isPresent()){
             LocationRequest locationRequest = new LocationRequest(
                     location.get().getId(),
-                    location.get().getVoiture().getImmatriculation(),
+                    location.get().getVoiture().getReference(),
                     location.get().getTypeDeGarantie(),
                     location.get().getModeDePaiement(),
                     location.get().getMontantDeGarantie(),
@@ -120,7 +120,7 @@ public class LocationController {
                                Model model, BindingResult bindingResult){
         Optional<Location> location = locationService.getLocationById(id);
         if (location.isPresent()){
-            Optional<Voiture> voiture = voitureService.getVoitureByImmatriculation(locationRequest.getImmatriculation());
+            Optional<Voiture> voiture = voitureService.getVoitureByReference(locationRequest.getReference());
             if (!voiture.isPresent()){
                 bindingResult.rejectValue("immatriculation","error.immatriculation","immatriculation not found");
             }

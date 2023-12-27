@@ -38,7 +38,7 @@ public class VoitureServiceImpl implements IVoitureService{
     }
 
     @Override
-    public Optional<Voiture> getVoitureByImmatriculation(String immatriculation) {
-        return Optional.ofNullable(voitureRepository.findVoitureByImmatriculation(immatriculation));
+    public Optional<Voiture> getVoitureByReference(String immatriculation) {
+        return voitureRepository.findVoitureByReference(immatriculation);
     }
 }

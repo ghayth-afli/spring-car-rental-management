@@ -12,5 +12,5 @@ public interface IVoitureService {
     void createVoiture(Voiture voiture);
     void updateVoiture(Voiture voiture);
     void deleteVoiture(Long id);
-    Optional<Voiture> getVoitureByImmatriculation(String immatriculation);
+    Optional<Voiture> getVoitureByReference(String reference);
 }

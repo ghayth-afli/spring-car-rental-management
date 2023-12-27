@@ -19,6 +19,7 @@ public class Voiture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String reference;
     private String immatriculation;
     private String marque;
     private String modele;
@@ -41,7 +42,7 @@ public class Voiture {
     @OneToMany(mappedBy = "voiture",cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Location> locations;
 
-    public Voiture(String immatriculation, String marque, String modele, Date dateDeMiseEnCirculation, Double prixDeLocation, EStatut statutDeDisponibilite, ECarburant typeDeCarburant, Double kilometrage, ETransmission typeDeTransmission, String couleur, Short nombreDeplaces, String options, String image, Agent agent) {
+    public Voiture(String immatriculation, String marque, String modele, Date dateDeMiseEnCirculation, Double prixDeLocation, EStatut statutDeDisponibilite, ECarburant typeDeCarburant, Double kilometrage, ETransmission typeDeTransmission, String couleur, Short nombreDeplaces, String options, String image, Agent agent, String reference) {
         this.immatriculation = immatriculation;
         this.marque = marque;
         this.modele = modele;
@@ -56,5 +57,6 @@ public class Voiture {
         this.options = options;
         this.image = image;
         this.agent = agent;
+        this.reference = reference;
     }
 }

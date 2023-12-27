@@ -54,7 +54,7 @@
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
-                                    <th>Id</th>
+                                    <th>Reference</th>
                                     <th>Immatriculation</th>
                                     <th>Marque</th>
                                     <th>Modele</th>
@@ -71,7 +71,7 @@
                                 <tbody>
                                 <th:block th:each="voiture : ${voitures}">
                                     <tr>
-                                        <td th:text="${voiture.getId}">ABC123456</td>
+                                        <td th:text="'#'+${voiture.getReference}">ABC123456</td>
                                         <td th:text="${voiture.getImmatriculation}">Dupont</td>
                                         <td th:text="${voiture.getMarque}">Marie</td>
                                         <td th:text="${voiture.getModele}">123 Rue de la Liberté</td>
@@ -110,7 +110,7 @@
                                 </tbody>
                                 <tfoot>
                                 <tr>
-                                    <th>Id</th>
+                                    <th>Reference</th>
                                     <th>Immatriculation</th>
                                     <th>Marque</th>
                                     <th>Modele</th>

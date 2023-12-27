@@ -70,7 +70,9 @@ public class VoitureController {
                 voitureRequest.getNombreDePlaces(),
                 voitureRequest.getOptions(),
                 fileNames.toString(),
-                null
+                null,
+                //generate reference
+                "REF"+UUID.randomUUID().toString().substring(0, 8).toUpperCase()
         );
         voitureService.createVoiture(voiture);
         return "redirect:/voitures";
@@ -149,5 +151,24 @@ public class VoitureController {
             voitureService.deleteVoiture(id);
         }
         return "redirect:/voitures";
+    }
+
+    //for frontOffice
+    @GetMapping("/all")
+    //display all voitures
+    public String getAllVoituresFront(Model model){
+        List<Voiture> voitures = voitureService.getAllVoitures();
+        model.addAttribute("voitures", voitures);
+        return "frontOffice/car-list";
+    }
+
+    @GetMapping("/{id}/details")
+    public String getVoitureById(Model model, @PathVariable Long id){
+        Optional<Voiture> voiture = voitureService.getVoitureById(id);
+        if (voiture.isPresent()){
+            model.addAttribute("voiture", voiture.get());
+            return "frontOffice/car-details";
+        }
+        return "redirect:/voitures/all";
     }
 }
