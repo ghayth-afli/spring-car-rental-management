@@ -53,9 +53,12 @@
                 <a href="#" class="btn btn-default btn-flat">Profil</a>
               </div>
               <div class="pull-right">
-                <a href="#" class="btn btn-default btn-flat"
+                <!--<a href="#" class="btn btn-default btn-flat"
                 >Se déconnecter</a
-                >
+                >-->
+                <form th:action="@{/logout}" method="post">
+                  <input type="submit" value="Sign Out"/>
+                </form>
               </div>
             </li>
           </ul>
