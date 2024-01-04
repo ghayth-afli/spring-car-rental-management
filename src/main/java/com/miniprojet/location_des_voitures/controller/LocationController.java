@@ -63,6 +63,12 @@ public class LocationController {
         if (!voiture.isPresent()){
             bindingResult.rejectValue("reference","error.reference","reference not found");
         }
+        if (voiture.get().getStatutDeDisponibilite().equals(EStatut.En_location)){
+            bindingResult.rejectValue("reference","error.reference","voiture is already in location");
+        }
+        if (voiture.get().getStatutDeDisponibilite().equals(EStatut.En_maintenance)){
+            bindingResult.rejectValue("reference","error.reference","voiture is in maintenance");
+        }
         if (locationRequest.getDateDeDebut()!=null && locationRequest.getDateDeFin()!=null){
             if (locationRequest.getDateDeDebut().after(locationRequest.getDateDeFin())){
                 bindingResult.rejectValue("dateDeDebut","error.dateDeDebut","la date de début doit être inférieur à la date de fin");
@@ -141,13 +147,27 @@ public class LocationController {
         }
         return "redirect:/clients";
     }
-    //display form to delete a location
+    //delete a location
     @PostMapping("/{id}/delete")
     //delete a location
     public String deleteLocation(@PathVariable Long id, Model model){
         Optional<Location> location = locationService.getLocationById(id);
         if (location.isPresent()){
             locationService.deleteLocation(id);
+        }
+        return "redirect:/clients";
+    }
+
+    // end location
+    @PostMapping("/{id}/end")
+    //end location
+    public String endLocation(@PathVariable Long id, Model model){
+        Optional<Location> location = locationService.getLocationById(id);
+        if (location.isPresent()){
+            location.get().setStatutDeLaLocation(ELocation.Terminée);
+            locationService.updateLocation(location.get());
+            location.get().getVoiture().setStatutDeDisponibilite(EStatut.Disponible);
+            voitureService.updateVoiture(location.get().getVoiture());
         }
         return "redirect:/clients";
     }

@@ -1,6 +1,8 @@
 package com.miniprojet.location_des_voitures.service;
 
 import com.miniprojet.location_des_voitures.model.Client;
+import com.miniprojet.location_des_voitures.model.ECarburant;
+import com.miniprojet.location_des_voitures.model.ETransmission;
 import com.miniprojet.location_des_voitures.model.Voiture;
 
 import java.util.List;
@@ -13,4 +15,5 @@ public interface IVoitureService {
     void updateVoiture(Voiture voiture);
     void deleteVoiture(Long id);
     Optional<Voiture> getVoitureByReference(String reference);
+    List<Voiture> filterVoitures(String voiture_marque, ECarburant vehicle_carburant, ETransmission vehicle_transmission);
 }

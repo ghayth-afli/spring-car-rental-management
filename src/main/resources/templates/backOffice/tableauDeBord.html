@@ -104,6 +104,7 @@
                             >
                                 <thead>
                                 <tr>
+                                    <th>Reference</th>
                                     <th>Immatriculation</th>
                                     <th>Marque</th>
                                     <th>Modele</th>
@@ -119,6 +120,7 @@
                                 <tbody>
                                 <th:block th:each="voiture : ${tableauDeBord.getVoituresDisponible}">
                                     <tr>
+                                        <td th:text="${voiture.getReference}">ABC-1234</td>
                                         <td th:text="${voiture.getImmatriculation}">ABC-1234</td>
                                         <td th:text="${voiture.getMarque}">Toyota</td>
                                         <td th:text="${voiture.getModele}">Corolla</td>
@@ -134,6 +136,7 @@
                                 </tbody>
                                 <tfoot>
                                 <tr>
+                                    <th>Reference</th>
                                     <th>Immatriculation</th>
                                     <th>Marque</th>
                                     <th>Modele</th>

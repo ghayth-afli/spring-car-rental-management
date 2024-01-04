@@ -1,5 +1,7 @@
 package com.miniprojet.location_des_voitures.service;
 
+import com.miniprojet.location_des_voitures.model.ECarburant;
+import com.miniprojet.location_des_voitures.model.ETransmission;
 import com.miniprojet.location_des_voitures.model.Voiture;
 import com.miniprojet.location_des_voitures.repository.VoitureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +42,10 @@ public class VoitureServiceImpl implements IVoitureService{
     @Override
     public Optional<Voiture> getVoitureByReference(String immatriculation) {
         return voitureRepository.findVoitureByReference(immatriculation);
+    }
+
+    @Override
+    public List<Voiture> filterVoitures(String voiture_marque, ECarburant vehicle_carburant, ETransmission vehicle_transmission) {
+        return voitureRepository.findVoitureByMarqueAndTypeDeCarburantAndTypeDeTransmission(voiture_marque, vehicle_carburant, vehicle_transmission);
     }
 }

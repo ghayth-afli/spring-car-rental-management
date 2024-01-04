@@ -99,6 +99,16 @@
                                                             <input type="submit"  class="dropdown-item bbtn" value="Supprimer">
                                                         </form>
                                                     </li>
+                                                    <li>
+                                                        <form th:action="@{/voitures/{id}/maintenance(id=${voiture.id})}" method="post">
+                                                            <input type="submit"  class="dropdown-item bbtn" value="En maintenance">
+                                                        </form>
+                                                    </li>
+                                                    <li>
+                                                        <form th:action="@{/voitures/{id}/disponible(id=${voiture.id})}" method="post">
+                                                            <input type="submit"  class="dropdown-item bbtn" value="Disponible">
+                                                        </form>
+                                                    </li>
                                                     <!-- Other options -->
                                                     <li><a th:href="@{'/locations/voiture/' + ${voiture.id}}">Locations</a></li>
 

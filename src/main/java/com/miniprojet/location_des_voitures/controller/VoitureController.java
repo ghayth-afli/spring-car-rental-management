@@ -1,7 +1,9 @@
 package com.miniprojet.location_des_voitures.controller;
 
 import com.miniprojet.location_des_voitures.dto.requests.VoitureRequest;
+import com.miniprojet.location_des_voitures.model.ECarburant;
 import com.miniprojet.location_des_voitures.model.EStatut;
+import com.miniprojet.location_des_voitures.model.ETransmission;
 import com.miniprojet.location_des_voitures.model.Voiture;
 import com.miniprojet.location_des_voitures.service.IVoitureService;
 import jakarta.validation.Valid;
@@ -161,7 +163,16 @@ public class VoitureController {
         model.addAttribute("voitures", voitures);
         return "frontOffice/car-list";
     }
-
+    //voitures/filter
+    @GetMapping("/filter")
+    //display all voitures
+    public String filterVoituresFront(Model model, @RequestParam String voiture_marque, @RequestParam String vehicle_carburant, @RequestParam String vehicle_transmission){
+        List<Voiture> voitures = voitureService.filterVoitures(voiture_marque,
+                ECarburant.valueOf(vehicle_carburant),
+                ETransmission.valueOf(vehicle_transmission));
+        model.addAttribute("voitures", voitures);
+        return "frontOffice/car-list";
+    }
     @GetMapping("/{id}/details")
     public String getVoitureById(Model model, @PathVariable Long id){
         Optional<Voiture> voiture = voitureService.getVoitureById(id);
@@ -170,5 +181,27 @@ public class VoitureController {
             return "frontOffice/car-details";
         }
         return "redirect:/voitures/all";
+    }
+
+    //En maintenance
+    @PostMapping("/{id}/maintenance")
+    public String maintenance(Model model, @PathVariable Long id){
+        Optional<Voiture> voiture = voitureService.getVoitureById(id);
+        if (voiture.isPresent()){
+            voiture.get().setStatutDeDisponibilite(EStatut.En_maintenance);
+            voitureService.updateVoiture(voiture.get());
+        }
+        return "redirect:/voitures";
+    }
+
+    //Disponible
+    @PostMapping("/{id}/disponible")
+    public String disponible(Model model, @PathVariable Long id){
+        Optional<Voiture> voiture = voitureService.getVoitureById(id);
+        if (voiture.isPresent()){
+            voiture.get().setStatutDeDisponibilite(EStatut.Disponible);
+            voitureService.updateVoiture(voiture.get());
+        }
+        return "redirect:/voitures";
     }
 }

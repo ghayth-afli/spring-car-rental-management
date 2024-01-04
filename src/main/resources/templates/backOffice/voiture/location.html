@@ -76,8 +76,12 @@
                                                             <input type="submit"  class="dropdown-item bbtn" value="Supprimer">
                                                         </form>
                                                     </li>
+                                                    <li>
+                                                        <form th:action="@{/locations/{id}/end(id=${location.id})}" method="post">
+                                                            <input type="submit"  class="dropdown-item bbtn" value="Términer">
+                                                        </form>
+                                                    </li>
                                                     <!-- Other options -->
-                                                    <li><a href="#">Locations</a></li>
                                                 </ul>
                                             </div>
                                         </td>
