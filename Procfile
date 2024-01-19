@@ -1,0 +1,1 @@
+web: java -jar target/location_des_voitures-0.0.1-SNAPSHOT.jar
