@@ -15,6 +15,6 @@ public class AuthController {
             return "redirect:/access-denied";
         }
         // Sinon, afficher la page de connexion
-        return "backoffice/login";
+        return "backOffice/login";
     }
 }

@@ -33,14 +33,14 @@ public class VoitureController {
     public String getAllVoitures(Model model){
         List<Voiture> voitures = voitureService.getAllVoitures();
         model.addAttribute("voitures", voitures);
-        return "backoffice/voiture/index";
+        return "backOffice/voiture/index";
     }
 
     @GetMapping("/create")
     //display create voiture form
     public String createVoiture(Model model){
         model.addAttribute("voitureRequest", new VoitureRequest());
-        return "backoffice/voiture/create";
+        return "backOffice/voiture/create";
     }
 
     @PostMapping("/create")
@@ -48,7 +48,7 @@ public class VoitureController {
     public String createVoiture(@Valid  @ModelAttribute("voitureRequest") VoitureRequest voitureRequest,
                                 BindingResult bindingResult,final @RequestParam MultipartFile file)throws IOException{
         if (bindingResult.hasErrors()){
-            return "backoffice/voiture/create";
+            return "backOffice/voiture/create";
         }
         //save image
         StringBuilder fileNames = new StringBuilder();
@@ -101,7 +101,7 @@ public class VoitureController {
                     voiture.get().getImage()
             );
             model.addAttribute("voitureRequest", voitureRequest);
-            return "backoffice/voiture/edit";
+            return "backOffice/voiture/edit";
         }
         return "redirect:/voitures";
     }
@@ -111,7 +111,7 @@ public class VoitureController {
     public String editVoiture(@PathVariable Long id, @Valid  @ModelAttribute("voitureRequest") VoitureRequest voitureRequest,
                               BindingResult bindingResult,final @RequestParam MultipartFile file){
         if (bindingResult.hasErrors()){
-            return "backoffice/voiture/edit";
+            return "backOffice/voiture/edit";
         }
         if (!file.isEmpty()){
             //save image

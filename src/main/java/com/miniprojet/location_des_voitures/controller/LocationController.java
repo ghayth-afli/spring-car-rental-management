@@ -34,7 +34,7 @@ public class LocationController {
         List<Location> locations = locationService.getLocationsByClient(id);
         model.addAttribute("id",id);
         model.addAttribute("locations",locations);
-        return "backoffice/client/location";
+        return "backOffice/client/location";
     }
 
     @GetMapping("/voiture/{id}")
@@ -42,7 +42,7 @@ public class LocationController {
     public String getLocationsByVoiture(@PathVariable Long id, Model model){
         List<Location> locations = locationService.getLocationsByVoiture(id);
         model.addAttribute("locations",locations);
-        return "backoffice/voiture/location";
+        return "backOffice/voiture/location";
     }
 
     @GetMapping("/client/{id}/create")
@@ -50,7 +50,7 @@ public class LocationController {
     public String createLocation(@PathVariable Long id, Model model){
         model.addAttribute("id",id);
         model.addAttribute("locationRequest",new LocationRequest());
-        return "backoffice/client/location-create";
+        return "backOffice/client/location-create";
     }
 
     @PostMapping("/client/{id}/create")
@@ -75,7 +75,7 @@ public class LocationController {
             }
         }
         if (bindingResult.hasErrors()){
-            return "backoffice/client/location-create";
+            return "backOffice/client/location-create";
         }
 
         //calculate number of days
@@ -115,7 +115,7 @@ public class LocationController {
                     location.get().getDateDeFin()
             );
             model.addAttribute("locationRequest", locationRequest);
-            return "backoffice/client/location-edit";
+            return "backOffice/client/location-edit";
         }
         return "redirect:/locations/client/"+id;
     }
@@ -136,7 +136,7 @@ public class LocationController {
                 }
             }
             if (bindingResult.hasErrors()){
-                return "backoffice/client/location-edit";
+                return "backOffice/client/location-edit";
             }
             location.get().setTypeDeGarantie(locationRequest.getTypeDeGarantie());
             location.get().setModeDePaiement(locationRequest.getModeDePaiement());

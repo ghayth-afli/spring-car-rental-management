@@ -34,6 +34,6 @@ public class TableauDeBordController {
         List<Voiture> voituresDisponible = voitureService.getAllVoitures().stream().filter(voiture -> voiture.getStatutDeDisponibilite().equals(EStatut.Disponible)).toList();
         TableauDeBordResponse tableauDeBordResponse = new TableauDeBordResponse(nbrClients, nbrLocations, revenu, nbrVoitures, voituresDisponible);
         model.addAttribute("tableauDeBord", tableauDeBordResponse);
-        return "backoffice/tableauDeBord";
+        return "backOffice/tableauDeBord";
     }
 }

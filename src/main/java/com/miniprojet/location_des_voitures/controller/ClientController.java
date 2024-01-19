@@ -25,21 +25,21 @@ public class ClientController {
     public String getAllClients(Model model){
         List<Client> clients = clientService.getAllClients();
         model.addAttribute("clients", clients);
-        return "backoffice/client/index";
+        return "backOffice/client/index";
     }
 
     @GetMapping("/create")
     //display create client form
     public String createClient(Model model){
         model.addAttribute("clientRequest",new ClientRequest());
-        return "backoffice/client/create";
+        return "backOffice/client/create";
     }
 
     @PostMapping("/create")
     //create client
     public String createClient(@Valid @ModelAttribute("clientRequest") ClientRequest clientRequest, BindingResult bindingResult){
         if (bindingResult.hasErrors()){
-            return "backoffice/client/create";
+            return "backOffice/client/create";
         }
         Date dateEnregistrement = new Date();
         Client client = new Client(clientRequest.getCin(),
@@ -73,7 +73,7 @@ public class ClientController {
                     client.get().getDateDeNaissance()
             );
             model.addAttribute("clientRequest", clientRequest);
-            return "backoffice/client/edit";
+            return "backOffice/client/edit";
         }
         return "redirect:/clients";
     }
@@ -82,7 +82,7 @@ public class ClientController {
     //edit client
     public String editClient(Model model, @PathVariable Long id, @Valid @ModelAttribute("clientRequest") ClientRequest clientRequest, BindingResult bindingResult){
         if (bindingResult.hasErrors()){
-            return "backoffice/client/edit";
+            return "backOffice/client/edit";
         }
         Optional<Client> client = clientService.getClientById(id);
         if (client.isPresent()){
