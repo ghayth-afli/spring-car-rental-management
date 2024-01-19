@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="backOffice/fragment/head-fragment :: head-fragment('Clients/locations')">
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <th:block th:replace="backOffice/fragment/header :: header"></th:block>
+
+    <th:block th:replace="backOffice/fragment/aside :: aside"></th:block>
+
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Géstion des Locations
+                <small>Panneau de contrôle</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i>Accueil</a></li>
+                <li class="active">Client</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <!-- /.row -->
+            <!-- Main row -->
+            <div class="row">
+                <!-- Left col -->
+                <section class="content">
+                    <!-- Data Table -->
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">Les locations Enregistré</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                <tr>
+                                    <th>Type De Garantie</th>
+                                    <th>Frais De Location</th>
+                                    <th>Mode De Paiement</th>
+                                    <th>Montant De Garantie</th>
+                                    <th>Statut De La Location</th>
+                                    <th>Date De Debut</th>
+                                    <th>Date De Fin</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <th:block th:each="location : ${locations}">
+                                    <tr>
+                                        <td th:text="${location.getTypeDeGarantie}">Marie</td>
+                                        <td th:text="${location.getFraisDeLocation}">123 Rue de la Liberté</td>
+                                        <td th:text="${location.getModeDePaiement}">marie.dupont@example.com</td>
+                                        <td th:text="${location.getMontantDeGarantie}">+33 6 12 34 56 78</td>
+                                        <td th:text="${location.getStatutDeLaLocation}">25/04/1990</td>
+                                        <td th:text="${location.getDateDeDebut}">B12345678</td>
+                                        <td th:text="${location.getDateDeFin}">10/09/2022</td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-default">Action</button>
+                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                                    <span class="caret"></span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <!-- Modify link -->
+                                                    <li>
+                                                        <a th:href="@{/locations/{id}/edit(id=${location.id})}">Modifier</a>
+                                                    </li>
+                                                    <!-- Delete form -->
+                                                    <li>
+                                                        <form th:action="@{/locations/{id}/delete(id=${location.id})}" method="post">
+                                                            <input type="submit"  class="dropdown-item bbtn" value="Supprimer">
+                                                        </form>
+                                                    </li>
+                                                    <li>
+                                                        <form th:action="@{/locations/{id}/end(id=${location.id})}" method="post">
+                                                            <input type="submit"  class="dropdown-item bbtn" value="Términer">
+                                                        </form>
+                                                    </li>
+                                                    <!-- Other options -->
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </th:block>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th>Type De Garantie</th>
+                                    <th>Frais De Location</th>
+                                    <th>Mode De Paiement</th>
+                                    <th>Montant De Garantie</th>
+                                    <th>Statut De La Location</th>
+                                    <th>Date De Debut</th>
+                                    <th>Date De Fin</th>
+                                    <th></th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </section>
+                <!-- /.Left col -->
+            </div>
+            <!-- /.row (main row) -->
+
+        </section>
+        <!-- /.content -->
+
+    </div>
+
+    <th:block th:replace="backOffice/fragment/footer :: footer"></th:block>
+
+    <div class="control-sidebar-bg"></div>
+</div>
+
+<th:block th:replace="backOffice/fragment/script-fragment :: script-fragment"></th:block>
+</body>
+</html>

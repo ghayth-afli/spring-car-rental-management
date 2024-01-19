@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+</head>
+<body>
+<th:block th:fragment="script-fragment">
+    <!-- ./wrapper -->
+
+    <!-- jQuery 3 -->
+    <script th:src="@{/bower_components/jquery/dist/jquery.min.js}"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script th:src="@{/bower_components/jquery-ui/jquery-ui.min.js}"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        $.widget.bridge("uibutton", $.ui.button);
+        /*]]>*/
+    </script>
+    <!-- Bootstrap 3.3.7 -->
+    <script
+            th:src="@{/bower_components/bootstrap/dist/js/bootstrap.min.js}"
+    ></script>
+    <!-- Morris.js charts -->
+    <script th:src="@{/bower_components/raphael/raphael.min.js}"></script>
+    <script th:src="@{/bower_components/morris.js/morris.min.js}"></script>
+    <!-- Sparkline -->
+    <script
+            th:src="@{/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js}"
+    ></script>
+    <!-- jvectormap -->
+    <script
+            th:src="@{/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js}"
+    ></script>
+    <script
+            th:src="@{/plugins/jvectormap/jquery-jvectormap-world-mill-en.js}"
+    ></script>
+    <!-- jQuery Knob Chart -->
+    <script
+            th:src="@{/bower_components/jquery-knob/dist/jquery.knob.min.js}"
+    ></script>
+    <!-- daterangepicker -->
+    <script th:src="@{/bower_components/moment/min/moment.min.js}"></script>
+    <script
+            th:src="@{/bower_components/bootstrap-daterangepicker/daterangepicker.js}"
+    ></script>
+    <!-- datepicker -->
+    <script
+            th:src="@{/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js}"
+    ></script>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script
+            th:src="@{/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js}"
+    ></script>
+    <!-- Slimscroll -->
+    <script
+            th:src="@{/bower_components/jquery-slimscroll/jquery.slimscroll.min.js}"
+    ></script>
+    <!-- FastClick -->
+    <script th:src="@{/bower_components/fastclick/lib/fastclick.js}"></script>
+    <!-- AdminLTE App -->
+    <script th:src="@{/dist/js/adminlte.min.js}"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script th:src="@{/dist/js/pages/dashboard.js}"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script th:src="@{/dist/js/demo.js}"></script>
+    <!-- DataTables -->
+    <script
+            th:src="@{/bower_components/datatables.net/js/jquery.dataTables.min.js}"
+    ></script>
+    <script
+            th:src="@{/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js}"
+    ></script>
+
+    <script th:src="@{/plugins/iCheck/icheck.min.js}"></script>
+
+    <script
+            th:src="@{/plugins/timepicker/bootstrap-timepicker.min.js}"
+    ></script>
+    <script
+            th:src="@{/bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js}"
+    ></script>
+    <script
+            th:src="@{/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js}"
+    ></script>
+    <script
+            th:src="@{/bower_components/bootstrap-daterangepicker/daterangepicker.js}"
+    ></script>
+
+    <script th:src="@{/bower_components/moment/min/moment.min.js}"></script>
+
+    <script
+            th:src="@{/plugins/input-mask/jquery.inputmask.extensions.js}"
+    ></script>
+
+    <script
+            th:src="@{/plugins/input-mask/jquery.inputmask.date.extensions.js}"
+    ></script>
+
+    <script th:src="@{/plugins/input-mask/jquery.inputmask.js}"></script>
+    <script
+            th:src="@{/bower_components/select2/dist/js/select2.full.min.js}"
+    ></script>
+    <!-- page script -->
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        $(function () {
+            $("#example1").DataTable();
+            $("#example2").DataTable({
+                paging: true,
+                lengthChange: false,
+                searching: false,
+                ordering: true,
+                info: true,
+                autoWidth: false,
+            });
+        });
+        /*]]>*/
+    </script>
+</th:block>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="frontOffice/fragment/head-fragment :: head-fragment('Rentaly')">
+</head>
+
+<body>
+<div id="wrapper">
+    <!-- page preloader begin -->
+    <div id="de-preloader"></div>
+    <!-- page preloader close -->
+
+    <!-- header begin -->
+    <th:block th:replace="frontOffice/fragment/header :: header"></th:block>
+    <!-- header close -->
+    <!-- content begin -->
+    <div class="no-bottom no-top zebra" id="content">
+        <div id="top"></div>
+
+        <!-- section begin -->
+        <section id="subheader" class="jarallax text-light">
+            <img th:src="@{/images/background/2.jpg}" class="jarallax-img" alt="">
+            <div class="center-y relative text-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h1>Vehicle Fleet</h1>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- section close -->
+
+        <section id="section-car-details">
+            <div class="container">
+                <div class="row g-5">
+                    <div class="col-lg-6">
+                        <div id="slider-carousel" class="owl-carousel">
+                            <div class="item">
+                                <img th:src="@{'/images/' + ${voiture.image}}" alt="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <h3  th:text="${voiture.marque}+' '+${voiture.modele}">BMW M2 2020</h3>
+                        <p th:text="'#'+${voiture.reference}"></p>
+
+                        <!-- Specifications -->
+                        <div class="spacer-10"></div>
+                        <h4>Specifications</h4>
+                        <div class="de-spec">
+                            <div class="d-row">
+                                <span class="d-title">Mise En Circulation</span>
+                                <spam class="d-value" th:text="${voiture.dateDeMiseEnCirculation.getDay()}+'/'+${voiture.dateDeMiseEnCirculation.getMonth()}+'/'+${voiture.dateDeMiseEnCirculation.getYear()}">Sedan</spam>
+                            </div>
+                            <div class="d-row">
+                                <span class="d-title">Type De Carburant</span>
+                                <spam class="d-value" th:text="${voiture.typeDeCarburant}">2 seats</spam>
+                            </div>
+                            <div class="d-row">
+                                <span class="d-title">Kilometrage</span>
+                                <spam class="d-value" th:text="${voiture.kilometrage}">2 doors</spam>
+                            </div>
+                            <div class="d-row">
+                                <span class="d-title">Transmission</span>
+                                <spam class="d-value" th:text="${voiture.typeDeTransmission}">150</spam>
+                            </div>
+                            <div class="d-row">
+                                <span class="d-title">Couleur</span>
+                                <spam class="d-value" th:text="${voiture.couleur}">Hybird</spam>
+                            </div>
+                            <div class="d-row">
+                                <span class="d-title">Nombre De places</span>
+                                <spam class="d-value" th:text="${voiture.nombreDeplaces}">3000</spam>
+                            </div>
+                        </div>
+
+                        <!-- Features -->
+                        <div class="spacer-single"></div>
+                    </div>
+
+                    <div class="col-lg-3">
+                        <div class="de-price text-center">
+                            Taux journalier
+                            <h3 th:text="${voiture.prixDeLocation}+' TND'">$265</h3>
+                        </div>
+                        <!-- Booking form -->
+                        <div class="spacer-30"></div>
+
+                        <!-- Share icons -->
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- content close -->
+    <a href="#" id="back-to-top"></a>
+    <!-- footer begin -->
+    <th:block th:replace="frontOffice/fragment/footer :: footer"></th:block>
+    <!-- footer close -->
+</div>
+<!-- Javascript Files
+================================================== -->
+
+<th:block th:replace="frontOffice/fragment/script-fragment :: script-fragment"></th:block>
+
+<!-- Mirrored from www.madebydesignesia.com/themes/rentaly/index-3.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 26 Dec 2023 16:46:50 GMT -->
+</body>
+</html>

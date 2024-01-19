@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="frontOffice/fragment/head-fragment :: head-fragment('Rentaly')">
+</head>
+
+<body>
+<style>
+    .cols{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+    }
+</style>
+<div id="wrapper">
+    <!-- page preloader begin -->
+    <div id="de-preloader"></div>
+    <!-- page preloader close -->
+
+    <!-- header begin -->
+    <th:block th:replace="frontOffice/fragment/header :: header"></th:block>
+    <!-- header close -->
+    <!-- content begin -->
+    <div class="no-bottom no-top zebra" id="content">
+        <div id="top"></div>
+
+        <!-- section begin -->
+        <section id="subheader" class="jarallax text-light">
+            <img th:src="@{/images/background/2.jpg}" class="jarallax-img" alt="">
+            <div class="center-y relative text-center">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <h1>Cars</h1>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- section close -->
+
+        <section id="section-cars">
+            <div class="container">
+                <form th:action="@{/voitures/filter}" method="GET"> <!-- Replace "/filter" with your actual form submission endpoint -->
+                        <div class="cols ">
+                                <div class="item_filter_group">
+                                    <h4>Marque</h4>
+                                    <div class="de_form">
+                                        <select name="voiture_marque" id="voiture_marque">
+                                            <option selected="selected" th:value="Toyota">Toyota</option>
+                                            <option th:value="Honda">Honda</option>
+                                            <option th:value="BMW">BMW</option>
+                                            <option th:value="Mercedes-Benz">Mercedes-Benz</option>
+                                            <option th:value="Ford">Ford</option>
+                                            <option th:value="Volkswagen">Volkswagen</option>
+                                            <option th:value="Audi">Audi</option>
+                                            <option th:value="Nissan">Nissan</option>
+                                            <option th:value="Chevrolet">Chevrolet</option>
+                                            <option th:value="Hyundai">Hyundai</option>
+                                            <option th:value="Kia">Kia</option>
+                                            <option th:value="Volvo">Volvo</option>
+                                            <option th:value="Subaru">Subaru</option>
+                                            <option th:value="Porsche">Porsche</option>
+                                            <option th:value="Jaguar">Jaguar</option>
+                                            <option th:value="Land-Rover">Land Rover</option>
+                                            <option th:value="Mazda">Mazda</option>
+                                            <option th:value="Fiat">Fiat</option>
+                                            <option th:value="Peugeot">Peugeot</option>
+                                            <option th:value="Renault">Renault</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="item_filter_group">
+                                    <h4>Type De Carburant</h4>
+                                    <div class="de_form">
+                                        <select name="vehicle_carburant" id="ehicle_carburant">
+                                            <option selected="selected" th:value="Essence">Essence</option>
+                                            <option th:value="Diesel">Diesel</option>
+                                            <option th:value="Électrique">Électrique</option>
+                                            <option th:value="Hybride">Hybride</option>
+                                            <option th:value="GPL">GPL</option>
+                                            <option th:value="GNV">GNV</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="item_filter_group">
+                                    <h4>Type De Transmission</h4>
+                                    <div class="de_form">
+                                        <select name="vehicle_transmission" id="vehicle_transmission">
+                                            <option th:value="Manuelle">Manuelle</option>
+                                            <option th:value="Automatique">Automatique</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <input class="btn-main" type="submit" value="Filter">
+                        </div>
+                </form>
+                <th:block th:each="voiture : ${voitures}">
+
+                        <div class="row">
+                            <!-- Car 1 -->
+                            <div class="col-lg-12">
+                                <div class="de-item-list mb30">
+                                    <div class="d-img">
+                                        <img th:src="@{'/images/' + ${voiture.image}}" class="img-fluid" alt="">
+                                    </div>
+                                    <div class="d-info">
+                                        <div class="d-text">
+                                            <h4 th:text="${voiture.marque +' '+ voiture.modele}">Jeep Renegade</h4>
+                                            <div class="d-atr-group">
+                                                <ul class="d-atr">
+                                                    <li><span>Places:</span><th:block th:text="${voiture.nombreDeplaces}"></th:block></li>
+                                                    <li><span>Carburant:</span><th:block th:text="${voiture.typeDeCarburant}"></th:block></li>
+                                                    <li><span>Transmission:</span><th:block th:text="${voiture.typeDeTransmission}"></th:block></li>
+                                                    <li><span>couleur:</span><th:block th:text="${voiture.couleur}"></th:block></li>
+                                                    <!-- Add more attributes as needed -->
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-price">
+                                        Location par jour <span th:text="${voiture.prixDeLocation+' TND'}"></span>
+                                        <a class="btn-main" th:href="@{'/voitures/'+${voiture.getId()}+'/details'}">Plus de détails</a>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <!-- Add similar code blocks for other cars -->
+                        </div>
+
+                </th:block>
+            </div>
+        </section>
+
+
+    </div>
+    <!-- content close -->
+    <a href="#" id="back-to-top"></a>
+    <!-- footer begin -->
+    <th:block th:replace="frontOffice/fragment/footer :: footer"></th:block>
+    <!-- footer close -->
+</div>
+<!-- Javascript Files
+================================================== -->
+
+<th:block th:replace="frontOffice/fragment/script-fragment :: script-fragment"></th:block>
+
+<!-- Mirrored from www.madebydesignesia.com/themes/rentaly/index-3.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 26 Dec 2023 16:46:50 GMT -->
+</body>
+</html>

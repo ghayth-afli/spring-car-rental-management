@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="backOffice/fragment/head-fragment :: head-fragment('Clients')">
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <th:block th:replace="backOffice/fragment/header :: header"></th:block>
+
+    <th:block th:replace="backOffice/fragment/aside :: aside"></th:block>
+
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Géstion des Clients
+                <small>Panneau de contrôle</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i>Accueil</a></li>
+                <li class="active">Voiture</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <!-- Menu -->
+            <div class="box">
+                <div class="box-body">
+                    <a href="/voitures/create" class="btn btn-app">
+                        <i class="fa fa-repeat"></i> Actualiser
+                    </a>
+                    <a href="/voitures" class="btn btn-app">
+                        <i class="fa fa-users"></i> Voitures
+                    </a>
+
+                </div>
+                <!-- /.box-body -->
+            </div>
+
+            <!-- /.row -->
+            <!-- Main row -->
+            <div class="row">
+                <!-- Left col -->
+                <section class="content">
+                    <!-- Data Table -->
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">Nouveau Voiture</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <form class="box-body" th:action="@{/voitures/create}" th:object="${voitureRequest}" method="post" enctype="multipart/form-data">
+
+                                <div class="box-body">
+                                    <div class="form-group" th:classappend="${#fields.hasErrors('immatriculation')} ? 'has-error' : ''">
+                                        <label for="nom">Immatriculation :</label>
+                                        <input type="text" class="form-control" id="nom" th:field="*{immatriculation}">
+                                        <span class="help-block" th:if="${#fields.hasErrors('immatriculation')}" th:errors="*{immatriculation}"></span>
+                                    </div>
+
+                                    <div class="form-group" th:classappend="${#fields.hasErrors('marque')} ? 'has-error' : ''">
+                                        <label for="marque">Marque :</label>
+                                        <input type="text" class="form-control" id="marque" th:field="*{marque}">
+                                        <span class="help-block" th:if="${#fields.hasErrors('marque')}" th:errors="*{marque}"></span>
+                                    </div>
+
+                                    <div class="form-group" th:classappend="${#fields.hasErrors('modele')} ? 'has-error' : ''">
+                                        <label for="marque">Modele :</label>
+                                        <input type="text" class="form-control" id="modele" th:field="*{modele}">
+                                        <span class="help-block" th:if="${#fields.hasErrors('modele')}" th:errors="*{modele}"></span>
+                                    </div>
+
+                                    <div class="form-group" th:classappend="${#fields.hasErrors('dateDeMiseEnCirculation')} ? 'has-error' : ''">
+                                        <label for="dateDeMiseEnCirculation">Date De Mise En Circulation :</label>
+                                        <input type="date" class="form-control" id="dateDeMiseEnCirculation" th:field="*{dateDeMiseEnCirculation}">
+                                        <span class="help-block" th:if="${#fields.hasErrors('dateDeMiseEnCirculation')}" th:errors="*{dateDeMiseEnCirculation}"></span>
+                                    </div>
+
+                                    <div class="form-group" th:classappend="${#fields.hasErrors('prixDeLocation')} ? 'has-error' : ''">
+                                        <label for="prixDeLocation">Prix De Location :</label>
+                                        <input type="number" class="form-control" id="prixDeLocation" th:field="*{prixDeLocation}">
+                                        <span class="help-block" th:if="${#fields.hasErrors('prixDeLocation')}" th:errors="*{prixDeLocation}"></span>
+                                    </div>
+
+                                    <div class="form-group" th:classappend="${#fields.hasErrors('typeDeCarburant')} ? 'has-error' : ''">
+                                        <label >Type De Carburant :</label>
+                                        <select class="form-control select2" style="width: 100%" th:field="*{typeDeCarburant}">
+                                            <option selected="selected" th:value="'Essence'">Essence</option>
+                                            <option th:value="'Diesel'">Diesel</option>
+                                            <option th:value="'Électrique'">Électrique</option>
+                                            <option th:value="'Hybride'">Hybride</option>
+                                            <option th:value="'GPL'">GPL</option>
+                                            <option th:value="'GNV'">GNV</option>
+                                        </select>
+                                        <span class="help-block" th:if="${#fields.hasErrors('typeDeCarburant')}" th:errors="*{typeDeCarburant}"></span>
+                                    </div>
+
+                                    <div class="form-group" th:classappend="${#fields.hasErrors('kilometrage')} ? 'has-error' : ''">
+                                        <label for="kilometrage">Kilometrage :</label>
+                                        <input type="number" class="form-control" id="kilometrage" th:field="*{kilometrage}">
+                                        <span class="help-block" th:if="${#fields.hasErrors('kilometrage')}" th:errors="*{kilometrage}"></span>
+                                    </div>
+
+                                    <div class="form-group" th:classappend="${#fields.hasErrors('typeDeTransmission')} ? 'has-error' : ''">
+                                        <label >Type De Transmission :</label>
+                                        <select class="form-control select2" style="width: 100%" th:field="*{typeDeTransmission}">
+                                            <option selected="selected" th:value="'Manuelle'">Manuelle</option>
+                                            <option th:value="'Automatique'">Automatique</option>
+                                        </select>
+                                        <span class="help-block" th:if="${#fields.hasErrors('typeDeTransmission')}" th:errors="*{typeDeTransmission}"></span>
+                                    </div>
+
+                                    <div class="form-group" th:classappend="${#fields.hasErrors('couleur')} ? 'has-error' : ''">
+                                        <label for="couleur">Couleur :</label>
+                                        <input type="text" class="form-control" id="couleur" th:field="*{couleur}">
+                                        <span class="help-block" th:if="${#fields.hasErrors('couleur')}" th:errors="*{couleur}"></span>
+                                    </div>
+
+                                    <div class="form-group" th:classappend="${#fields.hasErrors('nombreDePlaces')} ? 'has-error' : ''">
+                                        <label for="nombreDePlaces">Nombre De places :</label>
+                                        <input type="number" class="form-control" id="nombreDeplaces" th:field="*{nombreDePlaces}">
+                                        <span class="help-block" th:if="${#fields.hasErrors('nombreDePlaces')}" th:errors="*{nombreDePlaces}"></span>
+                                    </div>
+
+                                    <div class="form-group" th:classappend="${#fields.hasErrors('options')} ? 'has-error' : ''">
+                                        <label for="options">Options :</label>
+                                        <input type="text" class="form-control" id="options" th:field="*{options}">
+                                        <span class="help-block" th:if="${#fields.hasErrors('options')}" th:errors="*{options}"></span>
+                                    </div>
+
+                                    <div class="form-group" th:classappend="${#fields.hasErrors('image')} ? 'has-error' : ''">
+                                        <label for="image">Image :</label>
+                                        <input type="file" class="form-control" id="image" name="file">
+                                        <span class="help-block" th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></span>
+                                    </div>
+                                </div>
+
+                                <!-- /.box-body -->
+                                <div class="box-footer">
+                                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </section>
+                <!-- /.Left col -->
+            </div>
+            <!-- /.row (main row) -->
+        </section>
+        <!-- /.content -->
+
+    </div>
+
+    <th:block th:replace="backOffice/fragment/footer :: footer"></th:block>
+
+    <div class="control-sidebar-bg"></div>
+</div>
+<th:block th:replace="backOffice/fragment/script-fragment :: script-fragment"></th:block>
+</body>
+</html>

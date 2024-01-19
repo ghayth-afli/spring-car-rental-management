@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="backOffice/fragment/head-fragment :: head-fragment('Clients')">
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+    <th:block th:replace="backOffice/fragment/header :: header"></th:block>
+
+    <th:block th:replace="backOffice/fragment/aside :: aside"></th:block>
+
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Géstion des Clients
+                <small>Panneau de contrôle</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i>Accueil</a></li>
+                <li class="active">Client</li>
+            </ol>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <!-- Menu -->
+            <div class="box">
+                <div class="box-body">
+                    <a href="/voitures/create" class="btn btn-app">
+                        <i class="fa fa-repeat"></i> Actualiser
+                    </a>
+                    <a href="/voitures" class="btn btn-app">
+                        <i class="fa fa-users"></i> Voitures
+                    </a>
+
+                </div>
+                <!-- /.box-body -->
+            </div>
+
+            <!-- /.row -->
+            <!-- Main row -->
+            <div class="row">
+                <!-- Left col -->
+                <section class="content">
+                    <!-- Data Table -->
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">Nouveau Location</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <form class="box-body" th:action="@{/locations/{id}/edit(id=${locationRequest.getId})}" th:object="${locationRequest}" method="post">
+
+                                <div class="box-body">
+                                    <div class="form-group" th:classappend="${#fields.hasErrors('immatriculation')} ? 'has-error' : ''">
+                                        <label for="immatriculation">Immatriculation de Voiture :</label>
+                                        <input type="text" class="form-control" id="immatriculation" th:field="*{immatriculation}" th:value="${locationRequest.getImmatriculation}">
+                                        <span class="help-block" th:if="${#fields.hasErrors('immatriculation')}" th:errors="*{immatriculation}"></span>
+                                    </div>
+
+                                    <div class="form-group" th:classappend="${#fields.hasErrors('modeDePaiement')} ? 'has-error' : ''">
+                                        <label >Mode De Paiement :</label>
+                                        <select class="form-control select2" style="width: 100%" th:field="*{modeDePaiement}">
+                                            <option th:selected="${locationRequest.getModeDePaiement() == 'Espèce'}" th:value="'Espèce'">Espèce</option>
+                                            <option th:selected="${locationRequest.getModeDePaiement() == 'Chèque'}" th:value="'Chèque'">Chèque</option>
+                                        </select>
+
+                                        <span class="help-block" th:if="${#fields.hasErrors('modeDePaiement')}" th:errors="*{modeDePaiement}"></span>
+                                    </div>
+
+                                    <div class="form-group" th:classappend="${#fields.hasErrors('typeDeGarantie')} ? 'has-error' : ''">
+                                        <label >Type De Garantie :</label>
+                                        <select class="form-control select2" style="width: 100%" th:field="*{typeDeGarantie}">
+                                            <option th:selected="${locationRequest.getTypeDeGarantie() == 'Assurance_Responsabilité_Civile'}" th:value="'Assurance_Responsabilité_Civile'">Assurance Responsabilité Civile</option>
+                                            <option th:selected="${locationRequest.getTypeDeGarantie() == 'Assurance_contre_le_Vol'}" th:value="'Assurance_contre_le_Vol'">Assurance contre le Vol</option>
+                                            <option th:selected="${locationRequest.getTypeDeGarantie() == 'Assurance_Tous_Risques'}" th:value="'Assurance_Tous_Risques'">Assurance Tous Risques</option>
+                                            <option th:selected="${locationRequest.getTypeDeGarantie() == 'Assurance_Personnelle'}" th:value="'Assurance_Personnelle'">Assurance Personnelle</option>
+                                            <option th:selected="${locationRequest.getTypeDeGarantie() == 'Assurance_Annulation'}" th:value="'Assurance_Annulation'">Assurance Annulation</option>
+                                            <option th:selected="${locationRequest.getTypeDeGarantie() == 'Assurance_Assistance_Routière'}" th:value="'Assurance_Assistance_Routière'">Assurance Assistance Routière</option>
+                                        </select>
+
+                                        <span class="help-block" th:if="${#fields.hasErrors('typeDeGarantie')}" th:errors="*{typeDeGarantie}"></span>
+                                    </div>
+
+                                    <div class="form-group" th:classappend="${#fields.hasErrors('montantDeGarantie')} ? 'has-error' : ''">
+                                        <label for="montantDeGarantie">Montant De Garantie :</label>
+                                        <input type="text" class="form-control" id="montantDeGarantie" th:field="*{montantDeGarantie}" th:value="${locationRequest.getMontantDeGarantie}">
+                                        <span class="help-block" th:if="${#fields.hasErrors('montantDeGarantie')}" th:errors="*{montantDeGarantie}"></span>
+                                    </div>
+
+                                    <div class="form-group" th:classappend="${#fields.hasErrors('dateDeDebut')} ? 'has-error' : ''">
+                                        <label for="dateDeDebut">Date De Debut :</label>
+                                        <input type="date" class="form-control" id="dateDeDebut" th:field="*{dateDeDebut}" th:value="${locationRequest.getDateDeDebut}">
+                                        <span class="help-block" th:if="${#fields.hasErrors('dateDeDebut')}" th:errors="*{dateDeDebut}"></span>
+                                    </div>
+
+                                    <div class="form-group" th:classappend="${#fields.hasErrors('dateDeFin')} ? 'has-error' : ''">
+                                        <label for="dateDeFin">Date De Debut :</label>
+                                        <input type="date" class="form-control" id="dateDeFin" th:field="*{dateDeFin}" th:value="${locationRequest.getDateDeFin}">
+                                        <span class="help-block" th:if="${#fields.hasErrors('dateDeFin')}" th:errors="*{dateDeFin}"></span>
+                                    </div>
+
+                                </div>
+
+                                <!-- /.box-body -->
+                                <div class="box-footer">
+                                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </section>
+                <!-- /.Left col -->
+            </div>
+            <!-- /.row (main row) -->
+
+        </section>
+        <!-- /.content -->
+
+    </div>
+
+    <th:block th:replace="backOffice/fragment/footer :: footer"></th:block>
+
+    <div class="control-sidebar-bg"></div>
+</div>
+<th:block th:replace="backOffice/fragment/script-fragment :: script-fragment"></th:block>
+</body>
+</html>
