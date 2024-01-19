@@ -63,11 +63,11 @@ public class LocationController {
         if (!voiture.isPresent()){
             bindingResult.rejectValue("reference","error.reference","reference not found");
         }
-        if (voiture.get().getStatutDeDisponibilite().equals(EStatut.En_location)){
+        /*if (voiture.get().getStatutDeDisponibilite().equals(EStatut.En_location)){
             bindingResult.rejectValue("reference","error.reference","voiture is already in location");
-        }
-        if (voiture.get().getStatutDeDisponibilite().equals(EStatut.En_maintenance)){
-            bindingResult.rejectValue("reference","error.reference","voiture is in maintenance");
+        }*/
+        if (!voiture.get().getStatutDeDisponibilite().equals(EStatut.Disponible)){
+            bindingResult.rejectValue("reference","error.reference","voiture n est pas disponible");
         }
         if (locationRequest.getDateDeDebut()!=null && locationRequest.getDateDeFin()!=null){
             if (locationRequest.getDateDeDebut().after(locationRequest.getDateDeFin())){

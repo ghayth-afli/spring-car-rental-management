@@ -55,7 +55,7 @@
 
                                 <div class="box-body">
                                     <div class="form-group" th:classappend="${#fields.hasErrors('reference')} ? 'has-error' : ''">
-                                        <label for="reference">Immatriculation de Voiture :</label>
+                                        <label for="reference">Reference :</label>
                                         <input type="text" class="form-control" id="reference" th:field="*{reference}">
                                         <span class="help-block" th:if="${#fields.hasErrors('reference')}" th:errors="*{reference}"></span>
                                     </div>
